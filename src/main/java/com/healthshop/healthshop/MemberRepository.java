@@ -1,5 +1,6 @@
 package com.healthshop.healthshop;
 
+import com.healthshop.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
