@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.domain.order;
 
 import jakarta.persistence.*;
 import lombok.Getter;

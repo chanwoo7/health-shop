@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.domain.member.like;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,17 +7,19 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter @Setter
-public class Category {
+public class Like {
 
     // TODO: 연관관계 매핑
 
     @Id @GeneratedValue
-    @Column(name = "category_id")
+    @Column(name = "like_id")
     private Long id;
 
-    @Column(nullable = false, length = 25)
-    private String name;
+    @Column(nullable = false)
+    private LocalDateTime date;
 
 }

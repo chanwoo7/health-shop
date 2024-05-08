@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.domain.item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

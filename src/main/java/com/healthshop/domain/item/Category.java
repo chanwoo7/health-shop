@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.domain.item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,12 +9,15 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Cart {
+public class Category {
 
     // TODO: 연관관계 매핑
 
     @Id @GeneratedValue
-    @Column(name = "cart_id")
+    @Column(name = "category_id")
     private Long id;
+
+    @Column(nullable = false, length = 25)
+    private String name;
 
 }

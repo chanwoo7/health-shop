@@ -1,22 +1,22 @@
-package com.healthshop.domain;
+package com.healthshop.domain.member.cart;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "cart_item")
 @Getter @Setter
-public class OrderItem {
+public class CartItem {
 
     // TODO: 연관관계 매핑
 
     @Id @GeneratedValue
-    @Column(name = "order_item_id")
+    @Column(name = "cart_item_id")
     private Long id;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private Integer quantity = 1;
 
     @Column(nullable = false)
     private Long price;

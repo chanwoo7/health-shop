@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.domain.member.cart;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,14 +9,12 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Address extends AbstractAddress {
+public class Cart {
 
     // TODO: 연관관계 매핑
 
     @Id @GeneratedValue
-    @Column(name = "address_id")
+    @Column(name = "cart_id")
     private Long id;
 
-    @Column(nullable = false)
-    private Boolean isDefault = false;
 }

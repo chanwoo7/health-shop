@@ -1,5 +1,6 @@
-package com.healthshop.domain;
+package com.healthshop.domain.member;
 
+import com.healthshop.domain.AbstractAddress;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,19 +8,17 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter @Setter
-public class Like {
+public class Address extends AbstractAddress {
 
     // TODO: 연관관계 매핑
 
     @Id @GeneratedValue
-    @Column(name = "like_id")
+    @Column(name = "address_id")
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime date;
+    private Boolean isDefault = false;
 
 }
