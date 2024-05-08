@@ -29,10 +29,10 @@ public class Item {
     @Column(nullable = false)
     private String brand;
 
-    private String img_path;
+    private String imgPath;
 
     @Column(length = 1000)
     private String description;
 
-    private Integer stock_quality;
+    private Integer stockQuantity;
 }
