@@ -34,6 +34,6 @@ public class Member {
     private LocalDateTime regDate;
 
     @Column(nullable = false)
-    private boolean isActive = true;
+    private Boolean isActive = true;
 
 }
