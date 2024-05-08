@@ -1,29 +1,29 @@
-package com.healthshop.domain.member.cart;
+package com.healthshop.healthshop.domain.order;
 
-import com.healthshop.domain.item.Item;
+import com.healthshop.healthshop.domain.item.Item;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "cart_item")
+@Table(name = "order_item")
 @Getter @Setter
-public class CartItem {
+public class OrderItem {
 
     @Id @GeneratedValue
-    @Column(name = "cart_item_id")
+    @Column(name = "order_item_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @Column(nullable = false)
-    private Integer quantity = 1;
+    private Integer quantity;
 
     @Column(nullable = false)
     private Long price;

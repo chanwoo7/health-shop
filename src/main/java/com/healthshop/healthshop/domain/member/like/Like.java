@@ -1,7 +1,7 @@
-package com.healthshop.domain.member.like;
+package com.healthshop.healthshop.domain.member.like;
 
-import com.healthshop.domain.item.Item;
-import com.healthshop.domain.member.Member;
+import com.healthshop.healthshop.domain.item.Item;
+import com.healthshop.healthshop.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

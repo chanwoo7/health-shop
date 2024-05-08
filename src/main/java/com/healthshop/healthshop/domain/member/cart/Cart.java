@@ -1,6 +1,6 @@
-package com.healthshop.domain.member.cart;
+package com.healthshop.healthshop.domain.member.cart;
 
-import com.healthshop.domain.member.Member;
+import com.healthshop.healthshop.domain.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

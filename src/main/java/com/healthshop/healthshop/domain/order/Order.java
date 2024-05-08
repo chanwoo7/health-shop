@@ -1,7 +1,7 @@
-package com.healthshop.domain.order;
+package com.healthshop.healthshop.domain.order;
 
-import com.healthshop.domain.member.Member;
-import com.healthshop.domain.order.delivery.Delivery;
+import com.healthshop.healthshop.domain.member.Member;
+import com.healthshop.healthshop.domain.order.delivery.Delivery;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.healthshop.domain;
+package com.healthshop.healthshop.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
