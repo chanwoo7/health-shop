@@ -1,25 +1,23 @@
 package com.healthshop.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Address {
+public class Delivery {
 
     // TODO: 연관관계 매핑
     // TODO: 주소 인터페이스 생성하고 Address, Delivery를 구현체로
 
     @Id @GeneratedValue
-    @Column(name = "address_id")
+    @Column(name = "delivery_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Boolean isDefault = false;
+    private DeliveryStatus status;
 
     @Column(nullable = false, length = 100)
     private String address;
