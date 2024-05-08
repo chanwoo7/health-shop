@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter @Setter
 public class Cart {
@@ -16,5 +18,8 @@ public class Cart {
     @Id @GeneratedValue
     @Column(name = "cart_id")
     private Long id;
+
+    @Column(nullable = false)
+    private LocalDateTime date;
 
 }
