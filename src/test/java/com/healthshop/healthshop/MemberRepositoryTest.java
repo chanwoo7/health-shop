@@ -1,6 +1,6 @@
 package com.healthshop.healthshop;
 
-import com.healthshop.domain.member.Member;
+import com.healthshop.healthshop.domain.member.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
