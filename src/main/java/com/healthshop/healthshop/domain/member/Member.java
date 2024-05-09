@@ -48,7 +48,7 @@ public class Member {
     private List<Order> orders = new ArrayList<>();
 
     // OneToOne 매핑
-    @OneToOne(mappedBy = "member")
+    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
     private Cart cart;
 
 }

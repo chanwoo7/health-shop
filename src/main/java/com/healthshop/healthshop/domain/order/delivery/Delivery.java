@@ -19,7 +19,7 @@ public class Delivery extends AbstractAddress {
     private DeliveryStatus status;
 
     // OneToOne 매핑
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 
 }

@@ -13,7 +13,7 @@ public class Address extends AbstractAddress {
     @Column(name = "address_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
