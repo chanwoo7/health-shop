@@ -18,7 +18,6 @@ public class Delivery extends AbstractAddress {
     @Column(nullable = false)
     private DeliveryStatus status;
 
-    // OneToOne 매핑
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 

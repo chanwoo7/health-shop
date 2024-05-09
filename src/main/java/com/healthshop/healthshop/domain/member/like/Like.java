@@ -28,4 +28,10 @@ public class Like {
     @Column(nullable = false)
     private LocalDateTime date;
 
+    //==연관관계 편의 메서드==//
+    public void setMember(Member member) {
+        this.member = member;
+        member.getLikes().add(this);
+    }
+
 }

@@ -15,6 +15,8 @@ import java.util.List;
 @Getter @Setter
 public class Member {
 
+    // TODO: 생성과 동시에 Cart, Like 엔티티 바로 생성할 경우 CASCADE 추가할 것
+
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
@@ -37,7 +39,6 @@ public class Member {
     @Column(nullable = false)
     private Boolean isActive = true;
 
-    // OneToMany 매핑
     @OneToMany(mappedBy = "member")
     private List<Address> addresses = new ArrayList<>();
 
@@ -47,7 +48,6 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-    // OneToOne 매핑
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
     private Cart cart;
 

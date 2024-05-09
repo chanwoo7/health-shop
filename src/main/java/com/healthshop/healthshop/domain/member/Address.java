@@ -20,4 +20,10 @@ public class Address extends AbstractAddress {
     @Column(nullable = false)
     private Boolean isDefault = false;
 
+    //==연관관계 편의 메서드==//
+    public void setMember(Member member){
+        this.member = member;
+        member.getAddresses().add(this);
+    }
+
 }

@@ -18,8 +18,13 @@ public class Category {
     @Column(nullable = false, length = 25)
     private String name;
 
-    // OneToMany 매핑
     @OneToMany(mappedBy = "category")
     private List<Item> items = new ArrayList<>();
+
+    //==연관관계 편의 메서드==//
+    public void addItem(Item item) {
+        items.add(item);
+        item.setCategory(this);
+    }
 
 }

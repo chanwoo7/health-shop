@@ -41,8 +41,23 @@ public class Order {
     @Column(nullable = false)
     private PaymentMethod payment;  // 결제 수단: CREDIT_CARD, ACCOUNT_TRANSFER
 
-    // OneToMany 매핑
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    //==연관관계 편의 메서드==//
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
 }
