@@ -25,6 +25,10 @@ public class Member {
     @Column(nullable = false, length = 25)
     private String loginId;
 
+    // TODO: 암호화 필요
+    @Column(nullable = false)
+    private String password;
+
     @Column(length = 100)
     private String email;
 
