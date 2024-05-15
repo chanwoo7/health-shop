@@ -10,7 +10,7 @@ import lombok.Setter;
 public abstract class AbstractAddress {
 
     @Column(nullable = false, length = 100)
-    private String address;
+    private String addressMain;
 
     @Column(nullable = false, length = 100)
     private String addressDetail;
