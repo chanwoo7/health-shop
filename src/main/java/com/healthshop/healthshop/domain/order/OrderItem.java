@@ -26,6 +26,15 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(nullable = false)
-    private Long price;
+    private Long price;  // 제품 하나 가격으로 간주
+                         // TODO: 여기서 저장하지 말고 Item에서 바로 받아올지 추후 고민 필요
+
+    //==비즈니스 로직==//
+    /**
+     * 주문 취소
+     */
+    public void cancel() {
+        getItem().addStock(quantity);
+    }
 
 }
