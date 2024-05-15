@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter @Setter
@@ -52,5 +53,15 @@ public class Member {
 
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Cart cart;
+
+    //==조회 로직==//
+    /**
+     * 기본 배송지 조회
+     */
+    public Optional<Address> getDefaultAddress() {
+        return addresses.stream()
+                .filter(Address::getIsDefault) // isDefault가 true인 Address만 필터링
+                .findFirst();
+    }
 
 }

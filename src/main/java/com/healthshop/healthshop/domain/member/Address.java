@@ -26,4 +26,25 @@ public class Address extends AbstractAddress {
         member.getAddresses().add(this);
     }
 
+    //==생성 메서드==//
+    // TODO: 메서드 파라미터가 많으므로, 추후 빌더 패턴 고려할 것
+    public static Address createAddress(Member member,
+                                        String addressMain,
+                                        String addressDetail,
+                                        String zipcode,
+                                        String name,
+                                        String phone,
+                                        String request) {
+        Address address = new Address();
+        address.setMember(member);
+        address.setAddressMain(addressMain);
+        address.setAddressDetail(addressDetail);
+        address.setZipcode(zipcode);
+        address.setName(name);
+        address.setPhone(phone);
+        address.setRequest(request);
+        address.setIsDefault(member.getDefaultAddress().isEmpty());
+        return address;
+    }
+
 }
