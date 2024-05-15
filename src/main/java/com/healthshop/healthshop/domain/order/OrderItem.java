@@ -26,8 +26,7 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(nullable = false)
-    private Long price;  // 제품 하나 가격으로 간주
-                         // TODO: 여기서 저장하지 말고 Item에서 바로 받아올지 추후 고민 필요
+    private Integer price;  // 제품 하나 가격으로 간주
 
     //==비즈니스 로직==//
     /**
@@ -35,6 +34,10 @@ public class OrderItem {
      */
     public void cancel() {
         getItem().addStock(quantity);
+    }
+
+    public int getTotalPrice() {
+        return getPrice() * getQuantity();
     }
 
 }

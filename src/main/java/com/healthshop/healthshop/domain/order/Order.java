@@ -35,22 +35,12 @@ public class Order {
     @Column(nullable = false)
     private OrderStatus status;  // 주문 상태: COMPLETE, CANCEL
 
-    @Column(nullable = false)
-    private Long totalPrice;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PaymentMethod payment;  // 결제 수단: CREDIT_CARD, ACCOUNT_TRANSFER
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
-
-    // 총액 계산 메서드
-    private void setTotalPrice(OrderItem[] orderItems) {
-        for (OrderItem orderItem : orderItems) {
-            this.totalPrice += orderItem.getPrice() * orderItem.getQuantity();
-        }
-    }
 
     //==연관관계 편의 메서드==//
     public void setMember(Member member) {
@@ -78,7 +68,6 @@ public class Order {
         }
         order.setDate(LocalDateTime.now());
         order.setStatus(OrderStatus.COMPLETE);
-        order.setTotalPrice(orderItems);
         order.setPayment(payment);
         return order;
     }
@@ -96,6 +85,18 @@ public class Order {
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel();
         }
+    }
+
+    //==조회 로직==//
+    /**
+     * 전체 주문 가격 조회
+     */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
     }
 
 }
