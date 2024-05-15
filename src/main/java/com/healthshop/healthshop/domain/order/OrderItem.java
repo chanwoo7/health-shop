@@ -26,16 +26,29 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(nullable = false)
-    private Integer price;  // 제품 하나 가격으로 간주
+    private Integer price;  // 제품 하나 가격
+
+    //==생성 메서드==//
+    public static OrderItem createOrderItem(Item item, int price, int quantity) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setPrice(price);
+        orderItem.setQuantity(quantity);
+        item.removeStock(quantity);
+        return orderItem;
+    }
 
     //==비즈니스 로직==//
     /**
-     * 주문 취소
+     * 주문상품 취소
      */
     public void cancel() {
         getItem().addStock(quantity);
     }
 
+    /**
+     * 주문상품 전체 가격 조회
+     */
     public int getTotalPrice() {
         return getPrice() * getQuantity();
     }
