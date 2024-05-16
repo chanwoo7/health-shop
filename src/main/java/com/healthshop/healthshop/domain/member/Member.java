@@ -43,7 +43,7 @@ public class Member {
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "member")
-    private List<Address> addresses = new ArrayList<>();
+    private List<MemberAddress> memberAddresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Like> likes = new ArrayList<>();
@@ -58,9 +58,9 @@ public class Member {
     /**
      * 기본 배송지 조회
      */
-    public Optional<Address> getDefaultAddress() {
-        return addresses.stream()
-                .filter(Address::getIsDefault) // isDefault가 true인 Address만 필터링
+    public Optional<MemberAddress> getDefaultAddress() {
+        return memberAddresses.stream()
+                .filter(MemberAddress::getIsDefault) // isDefault가 true인 Address만 필터링
                 .findFirst();
     }
 

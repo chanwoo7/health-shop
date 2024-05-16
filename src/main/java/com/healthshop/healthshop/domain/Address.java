@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @MappedSuperclass
-public abstract class AbstractAddress {
+public abstract class Address {
 
     @Column(nullable = false, length = 100)
     private String addressMain;

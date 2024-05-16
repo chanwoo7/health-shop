@@ -1,7 +1,7 @@
 package com.healthshop.healthshop.domain.order;
 
 import com.healthshop.healthshop.domain.member.Member;
-import com.healthshop.healthshop.domain.order.delivery.Delivery;
+import com.healthshop.healthshop.domain.order.delivery.DeliveryAddress;
 import com.healthshop.healthshop.domain.order.delivery.DeliveryStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class Order {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+    private DeliveryAddress deliveryAddress;
 
     @Column(nullable = false)
     private LocalDateTime date;
@@ -48,9 +48,9 @@ public class Order {
         member.getOrders().add(this);
     }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-        delivery.setOrder(this);
+    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+        deliveryAddress.setOrder(this);
     }
 
     public void addOrderItem(OrderItem orderItem) {
@@ -59,10 +59,10 @@ public class Order {
     }
 
     //==생성 메서드==//
-    public static Order createOrder(Member member, Delivery delivery, PaymentMethod payment, OrderItem... orderItems) {
+    public static Order createOrder(Member member, DeliveryAddress deliveryAddress, PaymentMethod payment, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);
-        order.setDelivery(delivery);
+        order.setDeliveryAddress(deliveryAddress);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
         }
@@ -77,7 +77,7 @@ public class Order {
      * 주문 취소
      */
     public void cancel() {
-        if (delivery.getStatus() == DeliveryStatus.COMPLETE) {
+        if (deliveryAddress.getStatus() == DeliveryStatus.COMPLETE) {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
 
