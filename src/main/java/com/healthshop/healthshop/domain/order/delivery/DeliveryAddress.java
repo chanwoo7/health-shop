@@ -24,7 +24,7 @@ public class DeliveryAddress extends Address {
 
     //==생성 메서드==//
     /**
-     * 회원 기본배송지로부터 복사
+     * 회원 기본 주소로부터 복사
      */
     // TODO: 반복적인 코드 리팩토링 필요
     public static DeliveryAddress createDeliveryAddress(MemberAddress memberAddress) {
