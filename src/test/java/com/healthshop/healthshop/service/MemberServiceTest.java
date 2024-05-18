@@ -21,7 +21,7 @@ class MemberServiceTest {
 //    @Autowired EntityManager em;
 
     private void setOthers(Member member) {
-        member.setPassword("example123");  // TODO: 암호화 필요
+        member.setPassword("example123");
         member.setRegDate(LocalDateTime.now());
         member.setIsActive(true);
     }
@@ -84,5 +84,9 @@ class MemberServiceTest {
         Assertions.assertThrows(IllegalStateException.class,
                 () -> memberService.join(member2));
     }
+
+    // TODO: 회원 주소 생성
+
+    // TODO: 기본 주소 조회
 
 }
