@@ -34,20 +34,14 @@ class OrderServiceTest {
     @Test
     public void 단일상품주문() throws Exception {
         //given
-        // 회원 정보 설정
         Member member = createMember();
-
-        // 상품 정보 설정 (1개)
         Item dumbbell = createItem("덤벨", 10000, "㈜한국짐", 500);
 
-        // 주문할 상품 및 수량 정보 설정
         ItemQuantity iq = new ItemQuantity(dumbbell.getId(), 2);
 
-        // 리스트에 담기
         List<ItemQuantity> itemQuantities = new ArrayList<>();
         itemQuantities.add(iq);
 
-        // 결제수단 설정
         PaymentMethod payment = PaymentMethod.ACCOUNT_TRANSFER;
 
         //when
@@ -69,23 +63,17 @@ class OrderServiceTest {
     @Test
     public void 여러상품주문() throws Exception {
         //given
-        // 회원 정보 설정
         Member member = createMember();
-
-        // 상품 정보 설정 (여러 개)
         Item dumbbell = createItem("덤벨", 10000, "㈜한국짐", 500);
         Item gloves = createItem("장갑", 8000, "㈜우리짐", 100);
 
-        // 주문할 상품 및 수량 정보 설정
         ItemQuantity iq1 = new ItemQuantity(dumbbell.getId(), 2);
         ItemQuantity iq2 = new ItemQuantity(gloves.getId(), 3);
 
-        // 리스트에 담기
         List<ItemQuantity> itemQuantities = new ArrayList<>();
         itemQuantities.add(iq1);
         itemQuantities.add(iq2);
 
-        // 결제수단 설정
         PaymentMethod payment = PaymentMethod.ACCOUNT_TRANSFER;
 
         //when
@@ -108,20 +96,14 @@ class OrderServiceTest {
     @Test
     public void 상품주문_재고수량초과() throws Exception {
         //given
-        // 회원 정보 설정
         Member member = createMember();
-
-        // 상품 정보 설정
         Item dumbbell = createItem("덤벨", 10000, "㈜한국짐", 10);
 
-        // 주문할 상품 및 수량 정보 설정
         ItemQuantity iq = new ItemQuantity(dumbbell.getId(), 11);
 
-        // 리스트에 담기
         List<ItemQuantity> itemQuantities = new ArrayList<>();
         itemQuantities.add(iq);
 
-        // 결제수단 설정
         PaymentMethod payment = PaymentMethod.ACCOUNT_TRANSFER;
 
         //when
