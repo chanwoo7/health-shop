@@ -111,7 +111,32 @@ class OrderServiceTest {
                 () -> orderService.order(member.getId(), itemQuantities, payment));
     }
 
-    // TODO: 주문 취소
+    @Test
+    public void 주문취소() throws Exception {
+        //given
+        Member member = createMember();
+
+        Item dumbbell = createItem("덤벨", 10000, "㈜한국짐", 500);
+        ItemQuantity iq = new ItemQuantity(dumbbell.getId(), 2);
+
+        List<ItemQuantity> itemQuantities = new ArrayList<>();
+        itemQuantities.add(iq);
+
+        PaymentMethod payment = PaymentMethod.ACCOUNT_TRANSFER;
+
+        Long orderId = orderService.order(member.getId(), itemQuantities, payment);
+
+        //when
+        orderService.cancelOrder(orderId);
+
+        //then
+        Order getOrder = orderRepository.findOne(orderId);
+
+        // 1. 주문 취소 시 상태는 CANCEL
+        assertEquals(OrderStatus.CANCEL, getOrder.getStatus());
+        // 2. 취소된 수량만큼 재고가 증가해야 한다.
+        assertEquals(500, dumbbell.getStockQuantity());
+    }
 
     // TODO: 배송지 생성
 
