@@ -5,6 +5,7 @@ import com.healthshop.healthshop.domain.member.Member;
 import com.healthshop.healthshop.domain.order.Order;
 import com.healthshop.healthshop.domain.order.OrderStatus;
 import com.healthshop.healthshop.domain.order.PaymentMethod;
+import com.healthshop.healthshop.exception.NoDefaultAddressException;
 import com.healthshop.healthshop.exception.NotEnoughStockException;
 import com.healthshop.healthshop.repository.OrderRepository;
 import com.healthshop.healthshop.service.dto.ItemQuantity;
@@ -112,6 +113,24 @@ class OrderServiceTest {
     }
 
     @Test
+    public void 상품주문_기본주소미설정() throws Exception {
+        //given
+        Member member = createNoAddressMember();
+
+        Item dumbbell = createItem("덤벨", 10000, "㈜한국짐", 500);
+        ItemQuantity iq = new ItemQuantity(dumbbell.getId(), 2);
+
+        List<ItemQuantity> itemQuantities = new ArrayList<>();
+        itemQuantities.add(iq);
+
+        PaymentMethod payment = PaymentMethod.ACCOUNT_TRANSFER;
+
+        //when
+        Assertions.assertThrows(NoDefaultAddressException.class,
+                () -> orderService.order(member.getId(), itemQuantities, payment));
+    }
+
+    @Test
     public void 주문취소() throws Exception {
         //given
         Member member = createMember();
@@ -138,12 +157,6 @@ class OrderServiceTest {
         assertEquals(500, dumbbell.getStockQuantity());
     }
 
-    // TODO: 배송지 생성
-
-    // TODO: 배송지 생성 - 기본 주소 미설정
-
-    // TODO: 전체 주문 가격 조회
-
     private Member createMember() {
         Member member = new Member();
         member.setName("회원1");
@@ -153,6 +166,16 @@ class OrderServiceTest {
                 "김철수",
                 "010-0000-0000",
                 "문 앞에 놓아주세요.");
+        member.setLoginId("example123");
+        member.setPassword("example123");
+        member.setRegDate(LocalDateTime.now());
+        em.persist(member);
+        return member;
+    }
+
+    private Member createNoAddressMember() {
+        Member member = new Member();
+        member.setName("회원1");
         member.setLoginId("example123");
         member.setPassword("example123");
         member.setRegDate(LocalDateTime.now());
