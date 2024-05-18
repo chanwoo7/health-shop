@@ -21,7 +21,7 @@ public class Item {
     private String name;
 
     @Column(nullable = false)
-    private Long price;
+    private Integer price;
 
     @Column(nullable = false)
     private Integer discountRate = 0;
@@ -48,7 +48,7 @@ public class Item {
      * stockQuantity 감소
      */
     public void removeStock(int quantity) {
-        int restStock = this.stockQuantity = quantity;
+        int restStock = this.stockQuantity - quantity;
         if (restStock < 0) {
             throw new NotEnoughStockException("Need more stock!");
         }

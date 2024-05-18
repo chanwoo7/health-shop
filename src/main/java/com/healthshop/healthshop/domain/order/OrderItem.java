@@ -2,12 +2,15 @@ package com.healthshop.healthshop.domain.order;
 
 import com.healthshop.healthshop.domain.item.Item;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "order_item")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -26,6 +29,31 @@ public class OrderItem {
     private Integer quantity;
 
     @Column(nullable = false)
-    private Long price;
+    private Integer price;  // 제품 하나 가격
+
+    //==생성 메서드==//
+    public static OrderItem createOrderItem(Item item, int price, int quantity) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setPrice(price);
+        orderItem.setQuantity(quantity);
+        item.removeStock(quantity);
+        return orderItem;
+    }
+
+    //==비즈니스 로직==//
+    /**
+     * 주문상품 취소
+     */
+    public void cancel() {
+        getItem().addStock(quantity);
+    }
+
+    /**
+     * 주문상품 전체 가격 조회
+     */
+    public int getTotalPrice() {
+        return getPrice() * getQuantity();
+    }
 
 }

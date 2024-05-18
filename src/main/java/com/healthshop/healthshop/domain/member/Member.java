@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter @Setter
@@ -42,7 +43,7 @@ public class Member {
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "member")
-    private List<Address> addresses = new ArrayList<>();
+    private List<MemberAddress> memberAddresses = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Like> likes = new ArrayList<>();
@@ -52,5 +53,42 @@ public class Member {
 
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Cart cart;
+
+    //==생성 메서드==//
+
+    // TODO: Member 생성
+
+    /**
+     * 회원 주소 생성
+     */
+    // TODO: 메서드 파라미터가 많으므로, 추후 빌더 패턴 고려할 것
+    public MemberAddress createAddress(String addressMain,
+                                       String addressDetail,
+                                       String zipcode,
+                                       String name,
+                                       String phone,
+                                       String request) {
+        MemberAddress memberAddress = new MemberAddress();
+        memberAddress.setMember(this);
+        memberAddress.setAddressMain(addressMain);
+        memberAddress.setAddressDetail(addressDetail);
+        memberAddress.setZipcode(zipcode);
+        memberAddress.setName(name);
+        memberAddress.setPhone(phone);
+        memberAddress.setRequest(request);
+        memberAddress.setIsDefault(this.getDefaultAddress().isEmpty());
+        this.memberAddresses.add(memberAddress);
+        return memberAddress;
+    }
+
+    //==조회 로직==//
+    /**
+     * 기본 주소 조회
+     */
+    public Optional<MemberAddress> getDefaultAddress() {
+        return memberAddresses.stream()
+                .filter(MemberAddress::getIsDefault) // isDefault가 true인 Address만 필터링
+                .findFirst();
+    }
 
 }

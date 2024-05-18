@@ -1,16 +1,18 @@
 package com.healthshop.healthshop.domain.member;
 
-import com.healthshop.healthshop.domain.AbstractAddress;
+import com.healthshop.healthshop.domain.Address;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Address extends AbstractAddress {
+public class MemberAddress extends Address {
 
     @Id @GeneratedValue
-    @Column(name = "address_id")
+    @Column(name = "member_address_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -21,9 +23,9 @@ public class Address extends AbstractAddress {
     private Boolean isDefault = false;
 
     //==연관관계 편의 메서드==//
-    public void setMember(Member member){
+    public void setMember(Member member) {
         this.member = member;
-        member.getAddresses().add(this);
+        member.getMemberAddresses().add(this);
     }
 
 }
