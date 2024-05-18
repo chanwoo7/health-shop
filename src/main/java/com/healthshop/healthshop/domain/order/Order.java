@@ -1,6 +1,7 @@
 package com.healthshop.healthshop.domain.order;
 
 import com.healthshop.healthshop.domain.member.Member;
+import com.healthshop.healthshop.domain.member.MemberAddress;
 import com.healthshop.healthshop.domain.order.delivery.DeliveryAddress;
 import com.healthshop.healthshop.domain.order.delivery.DeliveryStatus;
 import jakarta.persistence.*;
@@ -73,6 +74,23 @@ public class Order {
         order.setStatus(OrderStatus.COMPLETE);
         order.setPayment(payment);
         return order;
+    }
+
+    /**
+     * 배송지 생성: 회원 기본 주소로부터 복사
+     */
+    // TODO: 반복적인 코드 리팩토링 필요
+    public static DeliveryAddress createDeliveryAddress(MemberAddress memberAddress) {
+        DeliveryAddress deliveryAddress = new DeliveryAddress();
+        // deliveryAddress.setOrder(this);  // order 생성 때 처리됨
+        deliveryAddress.setStatus(DeliveryStatus.BEFORE_SHIPPING);
+        deliveryAddress.setAddressMain(memberAddress.getAddressMain());
+        deliveryAddress.setAddressDetail(memberAddress.getAddressDetail());
+        deliveryAddress.setZipcode(memberAddress.getZipcode());
+        deliveryAddress.setName(memberAddress.getName());
+        deliveryAddress.setPhone(memberAddress.getPhone());
+        deliveryAddress.setRequest(memberAddress.getRequest());
+        return deliveryAddress;
     }
 
     //==비즈니스 로직==//

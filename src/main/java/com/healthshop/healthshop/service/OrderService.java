@@ -39,7 +39,7 @@ public class OrderService {
         // 배송정보 생성
         DeliveryAddress deliveryAddress;
         if (member.getDefaultAddress().isPresent()) {
-            deliveryAddress = DeliveryAddress.createDeliveryAddress(member.getDefaultAddress().get());
+            deliveryAddress = Order.createDeliveryAddress(member.getDefaultAddress().get());
         } else {
             throw new NoDefaultAddressException("기본 주소가 설정되어 있지 않습니다.");
         }
