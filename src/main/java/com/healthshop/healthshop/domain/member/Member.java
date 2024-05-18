@@ -55,9 +55,6 @@ public class Member {
     private Cart cart;
 
     //==생성 메서드==//
-
-    // TODO: Member 생성
-
     /**
      * 회원 주소 생성
      */
