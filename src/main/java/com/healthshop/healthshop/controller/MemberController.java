@@ -16,10 +16,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/members/new")
+    @GetMapping("/signup")
     public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-        return "members/signup";
+        return "member/signup";
     }
 
 //    public String create(@Valid MemberForm form, BindingResult result) {
