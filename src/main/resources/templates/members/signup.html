@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <!-- Bootstrap CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/members/signup.css" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head-other :: head('회원가입 - HealthShop', '/css/members/signup.css')">
 </head>
 <body>
 <section class="vh-100 bg-image"
          style="background-image: url('/images/fitness-center.webp');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-1">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -63,7 +57,7 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button type="button" data-mdb-button-init
-                                            data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Sign Up</button>
+                                            data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-2 text-body">Sign Up</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">이미 계정이 있으신가요? <a href="#!"
