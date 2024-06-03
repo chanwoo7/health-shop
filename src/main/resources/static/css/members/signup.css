@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'AppleFont';
-    src: url('static/fonts/AppleSDGothicNeoM.woff2') format('woff2'),
-    url('static/fonts/AppleSDGothicNeoM.ttf') format('truetype');
+    src: url('../../fonts/AppleSDGothicNeoM.woff2') format('woff2'),
+    url('../../fonts/AppleSDGothicNeoM.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
