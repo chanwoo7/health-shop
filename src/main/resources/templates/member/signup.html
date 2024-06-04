@@ -16,51 +16,65 @@
                             </div>
                             <h2 class="text-center mb-5">Sign Up for HealthShop</h2>
 
-                            <form>
+                            <form role="form" action="/signup" th:object="${signupForm}" method="post" onsubmit="return validateForm()">
+
+                                <div class="mb-3"><small>(*는 필수 입력사항입니다.)</small></div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputName">이름 또는 닉네임</label>
-                                    <input type="text" id="inputName" class="form-control form-control-lg" />
+                                    <label class="form-label" th:for="name">*이름 또는 닉네임</label>
+                                    <input type="text" th:field="*{name}" class="form-control"
+                                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"/>
+                                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputId">아이디</label>
-                                    <input type="text" id="inputId" class="form-control form-control-lg" />
+                                    <label class="form-label" th:for="loginId">*아이디</label>
+                                    <input type="text" th:field="*{loginId}" class="form-control"
+                                           th:classappend="${#fields.hasErrors('loginId')} ? 'is-invalid' : ''"/>
+                                    <div th:if="${#fields.hasErrors('loginId')}" class="invalid-feedback" th:errors="*{loginId}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputPassword">비밀번호</label>
-                                    <input type="password" id="inputPassword" class="form-control form-control-lg" />
+                                    <label class="form-label" th:for="password">*비밀번호 (숫자, 영문자, 특수문자를 포함한 8~16자리 문자)</label>
+                                    <input type="password" th:field="*{password}" class="form-control"
+                                           th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"/>
+                                    <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback" th:errors="*{password}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputConfirmPassword">비밀번호 확인</label>
-                                    <input type="password" id="inputConfirmPassword" class="form-control form-control-lg" />
+                                    <label class="form-label" for="confirmPassword">*비밀번호 확인</label>
+                                    <input type="password" id="confirmPassword" class="form-control" oninput="validatePasswords()"/>
+                                    <div id="confirmPasswordError" class="invalid-feedback" style="display: none;">비밀번호가 일치하지 않습니다.</div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputEmail">이메일</label>
-                                    <input type="email" id="inputEmail" class="form-control form-control-lg" />
+                                    <label class="form-label" th:for="email">이메일</label>
+                                    <input type="email" th:field="*{email}" class="form-control"
+                                           th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"/>
+                                    <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback" th:errors="*{email}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="inputPhone">전화번호</label>
-                                    <input type="tel" id="inputPhone" class="form-control form-control-lg" />
+                                    <label class="form-label" th:for="phone">전화번호 ('-'는 제외하고, 11자리 숫자로 입력)</label>
+                                    <input type="tel" th:field="*{phone}" class="form-control"
+                                           th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : ''"/>
+                                    <div th:if="${#fields.hasErrors('phone')}" class="invalid-feedback" th:errors="*{phone}"></div>
                                 </div>
 
                                 <div class="form-check d-flex justify-content-center mb-5">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="inputTerms" />
-                                    <label class="form-check-label" for="inputTerms">
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="terms" />
+                                    <label class="form-check-label" for="terms">
                                         <a href="#!" class="text-body"><u>HealthShop 이용약관</u></a>에 모두 동의합니다.
                                     </label>
+                                    <div id="termsError" class="text-center text-danger" style="display: none;">이용약관에 동의해야 합니다.</div>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" data-mdb-button-init
+                                    <button type="submit" data-mdb-button-init
                                             data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-2 text-body">Sign Up</button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">이미 계정이 있으신가요? <a href="#!"
+                                <p class="text-center text-muted mt-5 mb-0">이미 계정이 있으신가요? <a href="/login"
                                                                                              class="fw-bold text-body"><u>Login here</u></a></p>
 
                             </form>
@@ -72,6 +86,36 @@
         </div>
     </div>
 </section>
+
+<script>
+    function validatePasswords() {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const errorDiv = document.getElementById("confirmPasswordError");
+
+        if (password !== confirmPassword) {
+            errorDiv.style.display = "block";
+            return false; // Prevent form submission
+        } else {
+            errorDiv.style.display = "none";
+            return true; // Allow form submission
+        }
+    }
+
+    function validateForm() {
+        const passwordValid = validatePasswords();
+        const termsChecked = document.getElementById("terms").checked;
+        const termsErrorDiv = document.getElementById("termsError");
+
+        if (!termsChecked) {
+            termsErrorDiv.style.display = "block";
+        } else {
+            termsErrorDiv.style.display = "none";
+        }
+
+        return passwordValid && termsChecked;
+    }
+</script>
 
 </body>
 </html>
