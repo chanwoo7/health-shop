@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class MemberService {
     public Long join(Member member) {
         validateDuplicateMemberByName(member);
         validateDuplicateMemberByLoginId(member);
+        member.setRegDate(LocalDateTime.now());
         memberRepository.save(member);
         return member.getId();
     }

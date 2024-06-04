@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'AppleFont';
+    src: url('../../fonts/AppleSDGothicNeoM.woff2') format('font-woff2'),
+    url('../../fonts/AppleSDGothicNeoM.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'AppleFont', sans-serif;
+}
+
+.gradient-custom-1 {
+    background: linear-gradient(to right, rgba(65, 0, 0, 0.5), rgba(0, 58, 89, 0.5))
+}
+.gradient-custom-2 {
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}

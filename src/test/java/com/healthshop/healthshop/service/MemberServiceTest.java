@@ -22,7 +22,7 @@ class MemberServiceTest {
 
     private void setOthers(Member member) {
         member.setPassword("example123");
-        member.setRegDate(LocalDateTime.now());
+        // member.setRegDate(LocalDateTime.now());
         member.setIsActive(true);
     }
 

@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title, extraCssPath)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="chanwoo7">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/tiny-slider.css" rel="stylesheet">
+
+    <!-- Title -->
+    <title th:text="${title}">HealthShop - Your Strength Starts Here</title>
+
+    <!-- Extra CSS -->
+    <th:block th:if="${extraCssPath != null}">
+        <link th:href="${extraCssPath}" rel="stylesheet">
+    </th:block>
+
+</head>
