@@ -1,5 +1,6 @@
 package com.healthshop.healthshop.controller;
 
+import com.healthshop.healthshop.controller.form.LoginForm;
 import com.healthshop.healthshop.controller.form.SignupForm;
 import com.healthshop.healthshop.domain.member.Member;
 import com.healthshop.healthshop.service.MemberService;
@@ -44,6 +45,12 @@ public class MemberController {
     @GetMapping("/signup/success")
     public String showSignupSuccessForm() {
         return "member/signupSuccess";
+    }
+
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("loginForm", new LoginForm());
+        return "member/login";
     }
 
 //    public String create(@Valid SignupForm form, BindingResult result) {

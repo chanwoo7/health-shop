@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head-other :: head('로그인 - HealthShop', '/css/members/sign.css')">
+</head>
+<body>
+<section class="vh-100 bg-image"
+         style="background-image: url('/images/fitness-center.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-1">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px; max-width: 450px; margin: auto;">
+                        <div class="card-body p-5">
+                            <div class="text-center">
+                                <a href="/">
+                                    <img src="/images/logo.png" alt="Logo" class="mb-4" style="width: 100px; height: auto;">
+                                </a>
+                            </div>
+                            <h2 class="text-center mb-5"><b>HealthShop<span>.</span></b></h2>
+
+                            <form role="form" action="/login" th:object="${loginForm}" method="post" onsubmit="return validateForm()">
+
+                                <div data-mdb-input-init class="form-outline mb-2">
+                                    <input type=text th:field="*{loginId}" class="form-control form-control" placeholder="아이디"/>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-2">
+                                    <input type="password" th:field="*{password}" class="form-control form-control" placeholder="비밀번호"/>
+                                </div>
+
+                                <button type="submit" data-mdb-button-init
+                                        data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-2 text-body w-100">Login</button>
+
+
+                                <p class="text-center text-muted mt-5 mb-0">아직 계정이 없나요? <a href="/signup"
+                                                                                             class="fw-bold text-body"><u>Sign Up here</u></a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
