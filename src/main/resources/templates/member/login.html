@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head-other :: head('로그인 - HealthShop', '/css/members/sign.css')">
+<head th:replace="~{/fragments/head-other :: head('로그인 - HealthShop', '/css/members/sign.css')}">
 </head>
 <body>
 <section class="vh-100 bg-image"
@@ -18,7 +18,7 @@
                             </div>
                             <h2 class="text-center mb-5"><b>HealthShop<span>.</span></b></h2>
 
-                            <form role="form" action="/login" th:object="${loginForm}" method="post" onsubmit="return validateForm()">
+                            <form role="form" action="/login" th:object="${loginForm}" method="post">
 
                                 <div data-mdb-input-init class="form-outline mb-2">
                                     <input type=text th:field="*{loginId}" class="form-control form-control" placeholder="아이디"/>
