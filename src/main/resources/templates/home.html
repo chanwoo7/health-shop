@@ -7,12 +7,12 @@
 */ -->
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head">
+<head th:replace="~{fragments/head :: head}">
 </head>
 
 <body>
 <!-- Start Header/Navigation -->
-<header th:replace="fragments/header :: navigation"></header>
+<header th:replace="~{fragments/header :: navigation}"></header>
 <!-- End Header/Navigation -->
 
 <!-- Start Hero Section -->
@@ -52,12 +52,12 @@
             <!-- Start Column 2 -->
             <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                 <a class="product-item" href="cart.html">
-                    <img src="images/items/pull-up-bar-stand.webp" class="img-fluid product-thumbnail">
+                    <img src="/images/items/pull-up-bar-stand.webp" class="img-fluid product-thumbnail">
                     <h3 class="product-title">스탠드형 풀업 바</h3>
                     <strong class="product-price">89,900원</strong>
 
                     <span class="icon-cross">
-								<img src="images/cross.svg" class="img-fluid">
+								<img src="/images/cross.svg" class="img-fluid">
 							</span>
                 </a>
             </div>
@@ -66,12 +66,12 @@
             <!-- Start Column 3 -->
             <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                 <a class="product-item" href="cart.html">
-                    <img src="images/items/dumbbell-10kg.webp" class="img-fluid product-thumbnail">
+                    <img src="/images/items/dumbbell-10kg.webp" class="img-fluid product-thumbnail">
                     <h3 class="product-title">10kg 덤벨, 2개</h3>
                     <strong class="product-price">39,900원</strong>
 
                     <span class="icon-cross">
-								<img src="images/cross.svg" class="img-fluid">
+								<img src="/images/cross.svg" class="img-fluid">
 							</span>
                 </a>
             </div>
@@ -80,12 +80,12 @@
             <!-- Start Column 4 -->
             <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                 <a class="product-item" href="cart.html">
-                    <img src="images/items/t-shirt.webp" class="img-fluid product-thumbnail">
+                    <img src="/images/items/t-shirt.webp" class="img-fluid product-thumbnail" alt="">
                     <h3 class="product-title">트레이닝 티셔츠</h3>
                     <strong class="product-price">14,900원</strong>
 
                     <span class="icon-cross">
-								<img src="images/cross.svg" class="img-fluid">
+								<img src="/images/cross.svg" class="img-fluid" alt="">
 							</span>
                 </a>
             </div>
@@ -108,7 +108,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="images/truck.svg" alt="Image" class="imf-fluid">
+                                <img src="/images/truck.svg" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Fast &amp; Free Shipping</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -118,7 +118,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="images/bag.svg" alt="Image" class="imf-fluid">
+                                <img src="/images/bag.svg" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Easy to Shop</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -128,7 +128,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="images/support.svg" alt="Image" class="imf-fluid">
+                                <img src="/images/support.svg" alt="Image" class="imf-fluid">
                             </div>
                             <h3>24/7 Support</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -138,7 +138,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="images/return.svg" alt="Image" class="imf-fluid">
+                                <img src="/images/return.svg" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Hassle Free Returns</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -150,7 +150,7 @@
 
             <div class="col-lg-5">
                 <div class="img-wrap">
-                    <img src="images/customer.webp" alt="Image" class="img-fluid">
+                    <img src="/images/customer.webp" alt="Image" class="img-fluid">
                 </div>
             </div>
 
@@ -165,9 +165,9 @@
         <div class="row justify-content-between">
             <div class="col-lg-7 mb-5 mb-lg-0">
                 <div class="imgs-grid">
-                    <div class="grid grid-1"><img src="images/artisan-1.webp" alt="Untree.co"></div>
-                    <div class="grid grid-2"><img src="images/artisan-2.webp" alt="Untree.co"></div>
-                    <div class="grid grid-3"><img src="images/fitness-center.webp" alt="Untree.co"></div>
+                    <div class="grid grid-1"><img src="/images/artisan-1.webp" alt="Untree.co"></div>
+                    <div class="grid grid-2"><img src="/images/artisan-2.webp" alt="Untree.co"></div>
+                    <div class="grid grid-3"><img src="/images/fitness-center.webp" alt="Untree.co"></div>
                 </div>
             </div>
             <div class="col-lg-5 ps-lg-5">
@@ -180,7 +180,7 @@
                     <li>Donec vitae odio quis nisl dapibus malesuada</li>
                     <li>Donec vitae odio quis nisl dapibus malesuada</li>
                 </ul>
-                <p><a herf="#" class="btn">Explore</a></p>
+                <p><a href="#" class="btn">Explore</a></p>
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@
 
                                         <div class="author-info">
                                             <div class="author-pic">
-                                                <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                                <img src="/images/person-1.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Maria Jones</h3>
                                             <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -241,7 +241,7 @@
 
                                         <div class="author-info">
                                             <div class="author-pic">
-                                                <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                                <img src="/images/person-1.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Maria Jones</h3>
                                             <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -264,7 +264,7 @@
 
                                         <div class="author-info">
                                             <div class="author-pic">
-                                                <img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
+                                                <img src="/images/person-1.png" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Maria Jones</h3>
                                             <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -286,13 +286,13 @@
 <!-- End Testimonial Slider -->
 
 <!-- Start Footer Section -->
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 <!-- End Footer Section -->
 
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/tiny-slider.js"></script>
-<script src="js/custom.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 
 </html>
