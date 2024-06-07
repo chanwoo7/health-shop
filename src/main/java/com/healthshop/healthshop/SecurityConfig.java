@@ -14,10 +14,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "/login", "/signup",
+                        .requestMatchers("/", "/login", "/signup", "/signup/success",
                                 "/css/**", "/images/**", "/fonts/**", "/js/**", "/scss/**").permitAll()
                         .anyRequest().authenticated()
                 )
