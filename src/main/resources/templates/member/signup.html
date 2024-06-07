@@ -92,7 +92,7 @@
 
 <script>
     function validatePasswords() {
-        const password = document.getElementById("password").value;
+        const password = document.querySelector("[name='password']").value;
         const confirmPassword = document.getElementById("confirmPassword").value;
         const errorDiv = document.getElementById("confirmPasswordError");
 
