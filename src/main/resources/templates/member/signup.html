@@ -19,6 +19,7 @@
                             <h2 class="text-center mb-5">Sign Up for HealthShop</h2>
 
                             <form role="form" action="/signup" th:object="${signupForm}" method="post" onsubmit="return validateForm()">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                                 <div class="mb-3"><small>(*는 필수 입력사항입니다.)</small></div>
 
