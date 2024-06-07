@@ -19,6 +19,7 @@
                             <h2 class="text-center mb-5"><b>HealthShop<span>.</span></b></h2>
 
                             <form role="form" action="/login" th:object="${loginForm}" method="post">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                                 <div data-mdb-input-init class="form-outline mb-2">
                                     <input type=text th:field="*{loginId}" class="form-control form-control" placeholder="아이디"/>

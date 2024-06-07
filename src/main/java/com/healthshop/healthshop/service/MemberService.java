@@ -1,8 +1,11 @@
 package com.healthshop.healthshop.service;
 
+import com.healthshop.healthshop.SecurityConfig;
 import com.healthshop.healthshop.domain.member.Member;
 import com.healthshop.healthshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +18,14 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // 회원 가입
     @Transactional
     public Long join(Member member) {
         validateDuplicateMemberByName(member);
         validateDuplicateMemberByLoginId(member);
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
         member.setRegDate(LocalDateTime.now());
         memberRepository.save(member);
         return member.getId();
