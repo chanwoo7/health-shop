@@ -21,31 +21,31 @@
                             <form role="form" action="/signup" th:object="${signupForm}" method="post" onsubmit="return validateForm()">
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-                                <div class="mb-3"><small>(*는 필수 입력사항입니다.)</small></div>
+                                <div class="mb-3 highlight"><small>(*는 필수 입력 항목입니다.)</small></div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" th:for="name">*이름 또는 닉네임</label>
+                                    <label class="form-label" th:for="name">이름 또는 닉네임<span class="highlight fs-5">*</span></label>
                                     <input type="text" th:field="*{name}" class="form-control"
                                            th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"/>
                                     <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" th:for="loginId">*아이디</label>
+                                    <label class="form-label" th:for="loginId">아이디<span class="highlight fs-5">*</span></label>
                                     <input type="text" th:field="*{loginId}" class="form-control"
                                            th:classappend="${#fields.hasErrors('loginId')} ? 'is-invalid' : ''"/>
                                     <div th:if="${#fields.hasErrors('loginId')}" class="invalid-feedback" th:errors="*{loginId}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" th:for="password">*비밀번호 (숫자, 영문자, 특수문자를 포함한 8~16자리 문자)</label>
+                                    <label class="form-label" th:for="password">비밀번호 (숫자, 영문자, 특수문자를 포함한 8~16자리 문자)<span class="highlight fs-5">*</span></label>
                                     <input type="password" th:field="*{password}" class="form-control"
                                            th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"/>
                                     <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback" th:errors="*{password}"></div>
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" for="confirmPassword">*비밀번호 확인</label>
+                                    <label class="form-label" for="confirmPassword">비밀번호 확인<span class="highlight fs-5">*</span></label>
                                     <input type="password" id="confirmPassword" class="form-control" oninput="validatePasswords()"/>
                                     <div id="confirmPasswordError" class="invalid-feedback" style="display: none;">비밀번호가 일치하지 않습니다.</div>
                                 </div>
