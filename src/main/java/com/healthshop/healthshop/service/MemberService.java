@@ -1,10 +1,9 @@
 package com.healthshop.healthshop.service;
 
-import com.healthshop.healthshop.SecurityConfig;
 import com.healthshop.healthshop.domain.member.Member;
 import com.healthshop.healthshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,8 +40,8 @@ public class MemberService {
 
     // 중복 회원 검증 (by loginId)
     private void validateDuplicateMemberByLoginId(Member member) {
-        List<Member> findMembers = memberRepository.findByLoginId(member.getLoginId());
-        if (!findMembers.isEmpty()) {
+        Member findMember = memberRepository.findByLoginId(member.getLoginId());
+        if (findMember != null) {
             throw new IllegalStateException("이미 존재하는 아이디입니다.");
         }
     }
@@ -52,7 +51,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    // 회원 단건 조회
+    // 회원 단건 조회 (by id)
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
