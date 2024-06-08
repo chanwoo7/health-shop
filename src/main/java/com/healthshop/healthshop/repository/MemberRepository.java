@@ -2,7 +2,7 @@ package com.healthshop.healthshop.repository;
 
 import com.healthshop.healthshop.domain.member.Member;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -34,9 +34,13 @@ public class MemberRepository {
                 .getResultList();
     }
 
-    public List<Member> findByLoginId(String loginId) {
-        return em.createQuery("select m from Member m where m.loginId = :loginId", Member.class)
-                .setParameter("loginId", loginId)
-                .getResultList();
+    public Member findByLoginId(String loginId) {
+        try {
+            return em.createQuery("select m from Member m where m.loginId = :loginId", Member.class)
+                    .setParameter("loginId", loginId)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }
