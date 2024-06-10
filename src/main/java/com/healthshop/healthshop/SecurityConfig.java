@@ -14,17 +14,21 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/login", "/signup", "/signup/success",
-                                "/css/**", "/images/**", "/fonts/**", "/js/**", "/scss/**").permitAll()
+                                "/css/**", "/images/**", "/fonts/**", "/js/**", "/scss/**", "/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .failureUrl("/login?error")
                         .defaultSuccessUrl("/")
+                        .usernameParameter("loginId")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll
@@ -36,6 +40,7 @@ public class SecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

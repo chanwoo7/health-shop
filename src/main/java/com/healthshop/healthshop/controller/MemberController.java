@@ -54,19 +54,4 @@ public class MemberController {
         return "member/login";
     }
 
-//    public String create(@Valid SignupForm form, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "members/createMemberForm";
-//        }
-//        Member member = new Member();
-//
-//        member.setName(form.getName());
-//        member.setLoginId(form.getLoginId());
-//        member.setPassword(form.getPassword());
-//        member.setEmail(form.getEmail());
-//        member.setPhone(form.getPhone());
-//
-//        memberService.join(member);
-//    }
-
 }
