@@ -1,0 +1,2 @@
+INSERT INTO member (is_active, member_id, reg_date, login_id, name, password)
+VALUES (TRUE, 1, '2024-01-01 00:00:00.000000', 'admin', '관리자', '$2a$10$aFsluWG1kKHBJkvd8bQ1Mujg/v5Wmb9yEjzALHGZP1PD12mP66hEO');
