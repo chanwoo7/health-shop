@@ -12,7 +12,13 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+    defer-datasource-initialization: true  # hibernate 초기화 이후 data.sql이 실행되도록 변경
+  sql:
+    init:
+      mode: always # 추가
 
 logging:
   level:
-    org.hibernate.SQL: debug
+    org:
+      hibernate.SQL: debug
+      springframework.security: debug  # 임시로 추가
