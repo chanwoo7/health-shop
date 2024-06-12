@@ -21,4 +21,4 @@ logging:
   level:
     org:
       hibernate.SQL: debug
-      springframework.security: debug  # 임시로 추가
+#      springframework.security: debug  # 임시로 추가
