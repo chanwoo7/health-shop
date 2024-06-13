@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<div th:fragment="navigation">
+<div th:fragment="navigation(pageName)">
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark gradient-custom"
      aria-label="navigation bar">
 
@@ -17,14 +17,64 @@
 
     <div class="collapse navbar-collapse" id="navbars">
       <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li><a class="nav-link" href="/shop">Shop</a></li>
-        <li><a class="nav-link" href="/about">About us</a></li>
-        <li><a class="nav-link" href="/services">Services</a></li>
-        <li><a class="nav-link" href="/contact">Contact us</a></li>
+
+        <th:block th:if="${pageName == 'home'}">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        </th:block>
+        <th:block th:unless="${pageName == 'home'}">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        </th:block>
+
+        <th:block th:if="${pageName == 'shop'}">
+          <li class="active">
+            <a class="nav-link" href="/shop">Shop</a>
+          </li>
+        </th:block>
+        <th:block th:unless="${pageName == 'shop'}">
+          <li>
+            <a class="nav-link" href="/shop">Shop</a>
+          </li>
+        </th:block>
+
+        <th:block th:if="${pageName == 'about'}">
+          <li class="active">
+            <a class="nav-link" href="/about">About us</a>
+          </li>
+        </th:block>
+        <th:block th:unless="${pageName == 'about'}">
+          <li>
+            <a class="nav-link" href="/about">About us</a>
+          </li>
+        </th:block>
+
+        <th:block th:if="${pageName == 'services'}">
+          <li class="active">
+            <a class="nav-link" href="/services">Services</a>
+          </li>
+        </th:block>
+        <th:block th:unless="${pageName == 'services'}">
+          <li>
+            <a class="nav-link" href="/services">Services</a>
+          </li>
+        </th:block>
+
+        <th:block th:if="${pageName == 'contact'}">
+          <li class="active">
+            <a class="nav-link" href="/contact">Contact us</a>
+          </li>
+        </th:block>
+        <th:block th:unless="${pageName == 'contact'}">
+          <li>
+            <a class="nav-link" href="/contact">Contact us</a>
+          </li>
+        </th:block>
+
         <li><a class="nav-link" href="/signup">Sign up</a></li>
+
         <li>
           <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
           <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
