@@ -13,6 +13,9 @@ public class HealthShopApplication {
 
 		// 페이지네이션 테스트용 더미 데이터 생성
 		GenerateDummyData.main(null);
+
+		// 더미 데이터 DB에 적용
+		ExecuteSQLFile.main(null);
 	}
 
 }

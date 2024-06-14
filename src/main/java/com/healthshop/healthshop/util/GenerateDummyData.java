@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class GenerateDummyData {
     public static void main(String[] args) {
-        String fileName = "dummy_data.sql";
+        String fileName = "src/main/resources/dummy_data.sql";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write("-- 페이지네이션 테스트용 무의미한 상품 데이터 삽입\n");
