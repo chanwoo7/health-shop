@@ -33,8 +33,20 @@
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
         <a class="product-item" href="#">
           <img th:src="@{${item.getImgPath()}}" class="img-fluid product-thumbnail">
-          <h3 class="product-title" th:text="${item.name}"></h3>
-          <strong class="product-price extra-bold-text fs-1" th:text="${item.price} + '원'"></strong>
+          <h3 class="product-title bold-text" th:text="${item.name}"></h3>
+          <th:block th:if="${item.discountRate} != 0">
+            <div>
+              <span class="bold-text" th:text="${item.discountRate} + '%'"></span>
+              <del><span class="mb-0 original-price" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')} + '원'"></span></del>
+            </div>
+            <strong class="product-price fs-1"
+                    th:text="${#numbers.formatInteger(item.price - (item.discountRate * item.price * 0.01), 3, 'COMMA')} + '원'">
+            </strong>
+          </th:block>
+          <th:block th:if="${item.discountRate} == 0">
+            <strong class="product-price fs-1" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')} + '원'"></strong>
+          </th:block>
+
           <span class="icon-cross">
             <img src="/images/cross.svg" class="img-fluid">
           </span>
