@@ -53,6 +53,7 @@
         </li>
 
         <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+            th:if="${i >= currentPage - 4 and i <= currentPage + 4}"
             th:classappend="${i == currentPage} ? 'active'">
           <a class="page-link" th:href="@{/shop(page=${i})}" th:text="${i + 1}">1</a>
         </li>
