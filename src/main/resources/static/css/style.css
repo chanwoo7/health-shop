@@ -10,8 +10,39 @@
   font-family: 'AppleFont';
   src: url('../fonts/AppleSDGothicNeoM.woff2') format('font-woff2'),
   url('../fonts/AppleSDGothicNeoM.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'AppleFontB';
+  src: url('../fonts/AppleSDGothicNeoB.woff2') format('font-woff2'),
+  url('../fonts/AppleSDGothicNeoB.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AppleFontEB';
+  src: url('../fonts/AppleSDGothicNeoEB.woff2') format('font-woff2'),
+  url('../fonts/AppleSDGothicNeoEB.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+.normal-text {
+  font-family: 'AppleFont', sans-serif;
+  font-weight: 400;
+}
+
+.bold-text {
+  font-family: 'AppleFontB', sans-serif;
+  font-weight: 700;
+}
+
+.extra-bold-text {
+  font-family: 'AppleFontEB', sans-serif;
+  font-weight: 800;
 }
 
 body {

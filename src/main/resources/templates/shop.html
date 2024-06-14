@@ -14,7 +14,7 @@
     <div class="row justify-content-between">
       <div class="col-lg-5">
         <div class="intro-excerpt">
-          <h1><b>Shop</b></h1>
+          <h1 class="extra-bold-text">Shop</h1>
           <p class="mb-4">HealthShop만의 최고의 헬스용품으로 당신의 운동 목표를 달성하세요!<br>
             고품질 피트니스 용품으로 집에서도 체육관 수준의 운동을 경험할 수 있습니다.<br>
             건강한 라이프스타일을 위한 완벽한 파트너를 지금 바로 만나보세요!</p>
@@ -34,7 +34,7 @@
         <a class="product-item" href="#">
           <img th:src="@{${item.getImgPath()}}" class="img-fluid product-thumbnail">
           <h3 class="product-title" th:text="${item.name}"></h3>
-          <strong class="product-price" th:text="${item.price} + '원'"></strong>
+          <strong class="product-price extra-bold-text fs-1" th:text="${item.price} + '원'"></strong>
           <span class="icon-cross">
             <img src="/images/cross.svg" class="img-fluid">
           </span>
