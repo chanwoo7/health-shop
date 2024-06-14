@@ -787,3 +787,13 @@ textarea {
 .pagination .page-item.next-btn .page-link {
   width: 50px;  /* prev 및 next 버튼의 너비 */
 }
+
+.original-price {
+  color: #757575;
+}
+
+.product-price {
+  color: #BA2D1B !important;
+  font-family: 'AppleFontEB', sans-serif;
+  font-weight: 800;
+}
