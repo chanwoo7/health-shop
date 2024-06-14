@@ -34,7 +34,7 @@ class ItemConverterTest {
         assertEquals(1L, itemDto.getId());
         assertEquals("무산소", itemDto.getCategory());
         assertEquals("덤벨", itemDto.getName());
-        assertEquals("10,000", itemDto.getPrice());
+        assertEquals(10000, itemDto.getPrice());
         assertEquals(10, itemDto.getDiscountRate());
         assertEquals("찬우짐", itemDto.getBrand());
         assertEquals("/images/dumbbell.webp", itemDto.getImgPath());
@@ -49,7 +49,7 @@ class ItemConverterTest {
         itemDto.setId(1L);
         itemDto.setCategory("무산소");
         itemDto.setName("덤벨");
-        itemDto.setPrice("10,000");
+        itemDto.setPrice(10000);
         itemDto.setDiscountRate(10);
         itemDto.setBrand("찬우짐");
         itemDto.setImgPath("/images/dumbbell.webp");
@@ -75,19 +75,19 @@ class ItemConverterTest {
         assertEquals(100, item.getStockQuantity());
     }
 
-    @Test
-    public void toEntityTest_InvalidPriceFormat() throws Exception {
-        //given
-        ItemDto itemDto = new ItemDto();
-        itemDto.setPrice("invalid");
-
-        Category category = new Category();
-        category.setId(1L);
-        category.setName("무산소");
-
-        //when & then
-        assertThrows(IllegalArgumentException.class, () -> {
-            ItemConverter.toEntity(itemDto, category);
-        });
-    }
+//    @Test
+//    public void toEntityTest_InvalidPriceFormat() throws Exception {
+//        //given
+//        ItemDto itemDto = new ItemDto();
+//        itemDto.setPrice("invalid");
+//
+//        Category category = new Category();
+//        category.setId(1L);
+//        category.setName("무산소");
+//
+//        //when & then
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            ItemConverter.toEntity(itemDto, category);
+//        });
+//    }
 }

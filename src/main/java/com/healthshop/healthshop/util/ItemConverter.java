@@ -20,9 +20,7 @@ public class ItemConverter {
 
         itemDto.setName(item.getName());
 
-        // price에 세자릿수마다 콤마 추가
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
-        itemDto.setPrice(numberFormat.format(item.getPrice()));
+        itemDto.setPrice(item.getPrice());
 
         itemDto.setDiscountRate(item.getDiscountRate());
         itemDto.setBrand(item.getBrand());
@@ -41,13 +39,14 @@ public class ItemConverter {
         item.setName(itemDto.getName());
 
         // 콤마 제거하여 정수로 변환
-        try {
-            String priceWithoutCommas = itemDto.getPrice().replace(",", "");
-            item.setPrice(Integer.parseInt(priceWithoutCommas));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid price format");
-        }
+//        try {
+//            String priceWithoutCommas = itemDto.getPrice().replace(",", "");
+//            item.setPrice(Integer.parseInt(priceWithoutCommas));
+//        } catch (NumberFormatException e) {
+//            throw new IllegalArgumentException("Invalid price format");
+//        }
 
+        item.setPrice(itemDto.getPrice());
         item.setDiscountRate(itemDto.getDiscountRate());
         item.setBrand(itemDto.getBrand());
         item.setImgPath(itemDto.getImgPath());

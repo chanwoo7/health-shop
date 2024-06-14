@@ -12,8 +12,7 @@ public class ItemDto {
 
     private String name;
 
-    // 천 단위마다 콤마를 추가하여 저장해야 함 (ex) 10000 -> 10,000)
-    private String price;
+    private Integer price;
 
     private Integer discountRate;
 
