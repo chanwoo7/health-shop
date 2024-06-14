@@ -38,3 +38,6 @@ out/
 
 ### MacOS ###
 .DS_Store
+
+### dummy data ###
+/src/main/resources/dummy_data.sql
