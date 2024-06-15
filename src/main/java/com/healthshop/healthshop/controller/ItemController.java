@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -42,6 +43,15 @@ public class ItemController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", itemsPage.getTotalPages());
         return "shop";
+    }
+
+    @GetMapping("/shop/item/{itemId}")
+    public String getItem(@PathVariable Long itemId, Model model) {
+        Item item = itemService.findOne(itemId);
+        ItemDto itemDto = ItemConverter.toDto(item);
+
+        model.addAttribute("item", itemDto);
+        return "item/item";
     }
 
 }
