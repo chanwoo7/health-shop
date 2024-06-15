@@ -759,6 +759,7 @@ textarea {
     border-radius: 50%;
     background: rgba(59, 93, 80, 0.2); }
 
+/* shop.html */
 .pagination .page-item .page-link {
   color: #484848;
   width: 40px;  /* 너비 */
@@ -796,4 +797,20 @@ textarea {
   color: #BA2D1B !important;
   font-family: 'AppleFontEB', sans-serif;
   font-weight: 800;
+}
+
+/* item.html */
+.item-detail-box {
+  background:
+    linear-gradient(to bottom, black, #ffffff),
+    linear-gradient(to right, black, #8f0000),
+    #ffffff;
+}
+
+.small-button {
+  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  padding: 2px 9px; /* 버튼 내부 여백 조정 */
+  margin: 0 5px; /* 버튼과 텍스트 사이의 여백 조정 */
+  vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
+  text-align: center;
 }
