@@ -31,8 +31,8 @@
     <div class="row">
 
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
-        <a class="product-item" href="#">
-          <img th:src="@{${item.getImgPath()}}" class="img-fluid product-thumbnail">
+        <a class="product-item" th:href="@{/shop/item/{id}(id=*{item.id})}">
+          <img th:src="@{${item.imgPath}}" class="img-fluid product-thumbnail">
           <h3 class="product-title bold-text" th:text="${item.name}"></h3>
           <th:block th:if="${item.discountRate} != 0">
             <div>
