@@ -19,10 +19,7 @@
                     </button>
                 </div>
                 <h1 th:text="${item.name}" class="display-5 fw-bolder text-black">Shop item template</h1>
-                <div class="fs-5 mb-5">
-<!--                    <span class="text-decoration-line-through">$45.00</span>-->
-<!--                    <span>$40.00</span>-->
-
+                <div class="fs-5 mb-4">
                     <div class="mb-2">
                         <span class="bold-text text-black" th:text="${item.discountRate} + '%'"></span>
                         <del><span class="mb-0 original-price" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')} + '원'"></span></del>
@@ -31,6 +28,12 @@
                             th:text="${#numbers.formatInteger(item.price - (item.discountRate * item.price * 0.01), 3, 'COMMA')} + '원'">
                     </strong>
                 </div>
+                <hr>
+                <div class="mb-4">
+                    <span class="fs-5 bold-text text-black"><img class="mb-1" src="/images/truck.svg" width="30" height="30" alt="shipping"> 무료배송</span>
+                    <div class="fs-6 text-black">평일 오후 2시 이전까지 당일 발송</div>
+                </div>
+                <hr>
                 <p th:utext="${#strings.replace(item.description, '\n', '&#60;br&#62;')}" class="lead fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                 <div class="d-flex">
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
