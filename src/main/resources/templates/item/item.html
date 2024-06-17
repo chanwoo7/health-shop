@@ -41,9 +41,11 @@
                 <!-- 상품 설명 -->
                 <p th:utext="${#strings.replace(item.description, '\n', '&#60;br&#62;')}" class="lead fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                 <div class="d-flex">
+                    <button class="btn btn-outline-dark me-3" type="button" id="decreaseQuantity" onclick="updateQuantity(-1)">-</button>
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                    <button class="btn btn-outline-dark me-3" type="button" id="increaseQuantity" onclick="updateQuantity(1)">+</button>
                     <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                        <i class="bi-cart-fill me-1"></i>
+                        <img src="/images/cart.svg" width="24" height="23" alt="cart" style="margin-right: 8px;">
                         Add to cart
                     </button>
                 </div>
@@ -164,6 +166,27 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 <!-- 당일 배송 메시지 -->
 <script src="/js/the-day-shipping-message.js"></script>
+<script>
+    function updateQuantity(change) {
+        const input = document.getElementById('inputQuantity');
+        let currentValue = parseInt(input.value);
+        currentValue += change;
+
+        if (currentValue < 1) {
+            currentValue = 1;
+        } else if (currentValue > 100) {
+            currentValue = 100;
+        }
+
+        input.value = currentValue;
+        document.getElementById('decreaseQuantity').disabled = currentValue === 1;
+        document.getElementById('increaseQuantity').disabled = currentValue === 100;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('decreaseQuantity').disabled = true; // Initially disable the decrease button
+    });
+</script>
 
 </body>
 </html>
