@@ -75,7 +75,7 @@ public class OrderService {
     @Transactional
     public void cancelOrder(Long orderId) {
         // 주문 엔티티 조회
-        Order order = orderRepository.findOne(orderId);
+        Order order = orderRepository.findById(orderId).orElse(null);
         // 주문 취소
         order.cancel();
     }
