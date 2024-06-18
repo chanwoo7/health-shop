@@ -13,15 +13,35 @@ public class ItemSpecifications {
     // 낮은 가격순
     public static Specification<Item> sortByPriceDesc() {
         return (root, query, criteriaBuilder) -> {
-            query.orderBy(criteriaBuilder.desc(root.get("price")));
+            query.orderBy(criteriaBuilder.desc(
+                criteriaBuilder.diff(  // -
+                    root.get("price"),
+                    criteriaBuilder.prod(  // *
+                        root.get("discountRate"),
+                        criteriaBuilder.quot(  // /
+                            root.get("price"), 100
+                        )
+                    )
+                )
+            ));
             return null;
         };
     }
 
-    // 높은 가격순
+    // 높은 가격순 (할인율 반영)
     public static Specification<Item> sortByPriceAsc() {
         return (root, query, criteriaBuilder) -> {
-            query.orderBy(criteriaBuilder.asc(root.get("price")));
+            query.orderBy(criteriaBuilder.asc(
+                criteriaBuilder.diff(  // -
+                    root.get("price"),
+                    criteriaBuilder.prod(  // *
+                        root.get("discountRate"),
+                        criteriaBuilder.quot(  // /
+                            root.get("price"), 100
+                        )
+                    )
+                )
+            ));
             return null;
         };
     }
