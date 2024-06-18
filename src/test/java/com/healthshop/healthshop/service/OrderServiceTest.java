@@ -49,7 +49,8 @@ class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), itemQuantities, payment);
 
         //then
-        Order getOrder = orderRepository.findById(orderId).orElse(null);
+        Order getOrder = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid order ID: " + orderId));;
 
         // 1. 상품 주문 시 상태는 COMPLETE
         assertEquals(OrderStatus.COMPLETE, getOrder.getStatus());
@@ -81,7 +82,8 @@ class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), itemQuantities, payment);
 
         //then
-        Order getOrder = orderRepository.findById(orderId).orElse(null);
+        Order getOrder = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid order ID: " + orderId));
 
         // 1. 상품 주문 시 상태는 COMPLETE
         assertEquals(OrderStatus.COMPLETE, getOrder.getStatus());
@@ -149,7 +151,7 @@ class OrderServiceTest {
         orderService.cancelOrder(orderId);
 
         //then
-        Order getOrder = orderRepository.findById(orderId).orElse(null);
+        Order getOrder = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Invalid order ID: " + orderId));
 
         // 1. 주문 취소 시 상태는 CANCEL
         assertEquals(OrderStatus.CANCEL, getOrder.getStatus());
