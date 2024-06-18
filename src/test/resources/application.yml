@@ -13,6 +13,18 @@ spring:
 #        show_sql: true
 #        format_sql: true
 
+  sql:
+    init:
+      data-locations:
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    defer-datasource-initialization: true  # hibernate 초기화 이후 data.sql이 실행되도록 변경
+
 logging:
   level:
     org.hibernate.SQL: debug
