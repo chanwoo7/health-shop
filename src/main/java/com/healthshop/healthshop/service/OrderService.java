@@ -35,7 +35,9 @@ public class OrderService {
     public Long order(Long memberId, List<ItemQuantity> itemQuantities, PaymentMethod payment) {
 
         // 엔티티 조회
-        Member member = memberRepository.findById(memberId).orElse(null);
+        Member member = memberRepository.findById(memberId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid member ID: " + memberId));
+
 
         // 배송정보 생성
         DeliveryAddress deliveryAddress;
@@ -75,7 +77,8 @@ public class OrderService {
     @Transactional
     public void cancelOrder(Long orderId) {
         // 주문 엔티티 조회
-        Order order = orderRepository.findById(orderId).orElse(null);
+        Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new IllegalArgumentException("Invalid order ID: " + orderId));
         // 주문 취소
         order.cancel();
     }
