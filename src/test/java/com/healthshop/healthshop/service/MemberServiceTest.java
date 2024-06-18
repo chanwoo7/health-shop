@@ -40,7 +40,7 @@ class MemberServiceTest {
 
         //then
 //        em.flush();  // insert문 확인 용도
-        assertEquals(member, memberRepository.findOne(savedId));
+        assertEquals(member, memberRepository.findById(savedId).orElse(null));
     }
 
     @Test

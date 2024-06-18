@@ -53,6 +53,6 @@ public class MemberService {
 
     // 회원 단건 조회 (by id)
     public Member findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
+        return memberRepository.findById(memberId).orElse(null); // Optional 처리
     }
 }
