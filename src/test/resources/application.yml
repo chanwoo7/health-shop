@@ -1,18 +1,5 @@
 spring:
-#  datasource:
-#    url: jdbc:h2:tcp://localhost/~/health-shop
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
-
+  #--- data.sql 필요한 경우 주석 처리 ---#
   sql:
     init:
       data-locations:
@@ -22,6 +9,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+  #--------------------------------------#
   jpa:
     defer-datasource-initialization: true  # hibernate 초기화 이후 data.sql이 실행되도록 변경
 
