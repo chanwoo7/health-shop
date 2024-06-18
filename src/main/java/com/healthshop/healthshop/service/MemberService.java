@@ -3,7 +3,6 @@ package com.healthshop.healthshop.service;
 import com.healthshop.healthshop.domain.member.Member;
 import com.healthshop.healthshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
