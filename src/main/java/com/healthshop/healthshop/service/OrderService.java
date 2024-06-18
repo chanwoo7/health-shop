@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class OrderService {
     public Long order(Long memberId, List<ItemQuantity> itemQuantities, PaymentMethod payment) {
 
         // 엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).orElse(null);
 
         // 배송정보 생성
         DeliveryAddress deliveryAddress;
@@ -47,9 +48,15 @@ public class OrderService {
         // 주문상품 목록 생성
         List<OrderItem> orderItems = new ArrayList<>();
         for (ItemQuantity itemQuantity : itemQuantities) {
-            Item item = itemRepository.findOne(itemQuantity.getItemId());
-            OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), itemQuantity.getQuantity());
-            orderItems.add(orderItem);
+            Optional<Item> optionalItem = itemRepository.findById(itemQuantity.getItemId());
+            if (optionalItem.isPresent()) {
+                Item item = optionalItem.get();
+                OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), itemQuantity.getQuantity());
+                orderItems.add(orderItem);
+            } else {
+                // Handle the case where the item is not found
+                throw new IllegalArgumentException("Item not found for id: " + itemQuantity.getItemId());
+            }
         }
 
         // 주문상품 생성

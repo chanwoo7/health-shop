@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -26,8 +27,9 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item findOne(Long itemId) {
-        return itemRepository.findOne(itemId);
+    public Item findOne(Long id) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        return optionalItem.orElse(null);
     }
 
     public Page<Item> findItems(PageRequest pageRequest) {
