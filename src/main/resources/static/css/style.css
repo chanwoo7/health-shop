@@ -814,3 +814,38 @@ textarea {
   vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
   text-align: center;
 }
+
+/* Dropdown 버튼의 스타일 변경 */
+.dropdown-toggle {
+ background-color: #435C52 !important; /* 배경 색상 */
+ color: white !important; /* 텍스트 색상 */
+ border-radius: 1rem; /* 테두리 둥글기 */
+ padding: 12px 30px; /* 내부 여백 */
+}
+
+.dropdown-toggle:hover {
+  background-color: #646464; /* 호버 시 배경 색상 */
+  color: white; /* 호버 시 텍스트 색상 */
+}
+
+/* Dropdown 메뉴의 스타일 변경 */
+.dropdown-menu {
+  background-color: #f8f9fa; /* 메뉴 배경 색상 */
+  border: 1px solid #ced4da; /* 테두리 색상 */
+  border-radius: 5px; /* 테두리 둥글기 */
+  width: 200px; /* 메뉴 너비 */
+  max-height: 300px; /* 최대 높이 */
+  overflow-y: auto; /* 세로 스크롤 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+
+/* Dropdown 항목의 스타일 변경 */
+.dropdown-item {
+  color: #343a40; /* 항목 텍스트 색상 */
+  padding: 10px 20px; /* 내부 여백 */
+}
+
+.dropdown-item:hover {
+  background-color: #e9ecef; /* 호버 시 배경 색상 */
+  color: #212529; /* 호버 시 텍스트 색상 */
+}

@@ -28,6 +28,37 @@
 <!-- Start Product Section -->
 <div class="untree_co-section product-section before-footer-section">
   <div class="container">
+    <!-- 상품 정렬 및 검색 -->
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-2 d-flex align-items-center">
+            <div class="dropdown w-100">
+              <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="sortDropdownText">정렬</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                <li><a class="dropdown-item" href="#" onclick="setSort('idDesc', '신상품순')">신상품순</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setSort('priceDesc', '높은 가격순')">높은 가격순</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setSort('priceAsc', '낮은 가격순')">낮은 가격순</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setSort('discountRateDesc', '할인율순')">할인율순</a></li>
+              </ul>
+              <form id="sortForm" th:action="@{/shop}" method="get" style="display:none;">
+                <input type="hidden" name="sort" id="sortInput" th:value="${sort}">
+              </form>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <form th:action="@{/shop}" method="get" class="d-flex">
+              <input type="text" name="keyword" class="form-control me-4" placeholder="Search products..." th:value="${keyword}">
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 상품 목록 -->
     <div class="row">
 
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
@@ -90,6 +121,26 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/tiny-slider.js"></script>
 <script src="/js/custom.js"></script>
+<script>
+  function setSort(value, text) {
+    document.getElementById('sortInput').value = value;
+    document.getElementById('sortDropdownText').innerText = text;
+    document.getElementById('sortForm').submit();
+  }
+
+  // 페이지 로드할 때마다 드롭다운 텍스트 초기화
+  document.addEventListener('DOMContentLoaded', function() {
+    const sortValue = document.getElementById('sortInput').value;
+    let sortText = '정렬';
+    if (sortValue === 'idDesc') sortText = '신상품순';
+    else if (sortValue === 'priceDesc') sortText = '높은 가격순';
+    else if (sortValue === 'priceAsc') sortText = '낮은 가격순';
+    else if (sortValue === 'discountRateDesc') sortText = '할인율순';
+
+    document.getElementById('sortDropdownText').innerText = sortText;
+  });
+</script>
+
 </body>
 
 </html>
