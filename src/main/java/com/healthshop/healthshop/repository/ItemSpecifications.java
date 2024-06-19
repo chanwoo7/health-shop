@@ -10,7 +10,7 @@ public class ItemSpecifications {
                 criteriaBuilder.like(root.get("name"), "%" + keyword + "%");
     }
 
-    // 낮은 가격순
+    // 낮은 가격순 (할인율 반영)
     public static Specification<Item> sortByPriceDesc() {
         return (root, query, criteriaBuilder) -> {
             query.orderBy(criteriaBuilder.desc(
@@ -54,7 +54,7 @@ public class ItemSpecifications {
         };
     }
 
-    // 추가순 (id 높은순)
+    // 신상품순 (id 높은 순)
     public static Specification<Item> sortByIdDesc() {
         return (root, query, criteriaBuilder) -> {
             query.orderBy(criteriaBuilder.desc(root.get("id")));

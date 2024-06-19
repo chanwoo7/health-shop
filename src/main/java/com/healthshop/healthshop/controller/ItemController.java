@@ -21,20 +21,13 @@ public class ItemController {
 
     private final ItemService itemService;
 
-//    @GetMapping("/shop")
-//    public String shop(Model model) {
-//        List<Item> items = itemService.findItems();
-//        List<ItemDto> itemDtos = items.stream()
-//                .map(ItemConverter::toDto)
-//                .toList();
-//        model.addAttribute("items", itemDtos);
-//        return "shop";
-//    }
-
     @GetMapping("/shop")
-    public String shop(@RequestParam(defaultValue = "0") int page, Model model) {
+    public String shop(@RequestParam(defaultValue = "0") int page,
+                       @RequestParam(defaultValue = "") String keyword,
+                       @RequestParam(defaultValue = "idDesc") String sort,
+                       Model model) {
         PageRequest pageRequest = PageRequest.of(page, 12);
-        Page<Item> itemsPage = itemService.findItems(pageRequest);
+        Page<Item> itemsPage = itemService.findItems(keyword, sort, pageRequest);
         List<ItemDto> itemDtos = itemsPage.getContent().stream()
                 .map(ItemConverter::toDto)
                 .toList();
@@ -42,6 +35,8 @@ public class ItemController {
         model.addAttribute("items", itemDtos);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", itemsPage.getTotalPages());
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("sort", sort);
         return "shop";
     }
 
