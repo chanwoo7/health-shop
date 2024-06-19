@@ -51,6 +51,7 @@
           <div class="col-md-10">
             <form th:action="@{/shop}" method="get" class="d-flex">
               <input type="text" name="keyword" class="form-control me-4" placeholder="Search products..." th:value="${keyword}">
+              <input type="hidden" name="sort" th:value="${sort}">
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
           </div>
