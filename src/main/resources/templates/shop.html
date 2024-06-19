@@ -61,6 +61,9 @@
 
     <!-- 상품 목록 -->
     <div class="row">
+      <div th:if="${items.isEmpty()}">
+        <p class="text-center mt-4 mb-4">상품 검색 결과가 없습니다.</p>
+      </div>
 
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
         <a class="product-item" th:href="@{/shop/item/{id}(id=*{item.id})}">
@@ -129,7 +132,7 @@
     document.getElementById('sortForm').submit();
   }
 
-  // 페이지 로드할 때마다 드롭다운 텍스트 초기화
+  // 페이지 로드할 때마다 선택한 정렬값으로 드롭다운 텍스트 초기화
   document.addEventListener('DOMContentLoaded', function() {
     const sortValue = document.getElementById('sortInput').value;
     let sortText = '정렬';
