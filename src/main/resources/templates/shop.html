@@ -51,6 +51,7 @@
           <div class="col-md-10">
             <form th:action="@{/shop}" method="get" class="d-flex">
               <input type="text" name="keyword" class="form-control me-4" placeholder="Search products..." th:value="${keyword}">
+              <input type="hidden" name="sort" th:value="${sort}">
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
           </div>
@@ -60,6 +61,9 @@
 
     <!-- 상품 목록 -->
     <div class="row">
+      <div th:if="${items.isEmpty()}">
+        <p class="text-center mt-4 mb-4">상품 검색 결과가 없습니다.</p>
+      </div>
 
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
         <a class="product-item" th:href="@{/shop/item/{id}(id=*{item.id})}">
@@ -87,27 +91,29 @@
     </div>
 
     <!-- Start Pagination -->
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        <li class="page-item prev-btn" th:classappend="${currentPage == 0} ? 'disabled'">
-          <a class="page-link" th:href="@{/shop(page=${currentPage - 1})}" aria-label="Previous">
-            <span aria-hidden="true">Prev</span>
-          </a>
-        </li>
+    <div th:if="${totalPages > 0}">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item prev-btn" th:classappend="${currentPage == 0} ? 'disabled'">
+            <a class="page-link" th:href="@{/shop(page=${currentPage - 1}, sort=${sort}, keyword=${keyword})}" aria-label="Previous">
+              <span aria-hidden="true">Prev</span>
+            </a>
+          </li>
 
-        <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-            th:if="${i >= currentPage - 4 and i <= currentPage + 4}"
-            th:classappend="${i == currentPage} ? 'active'">
-          <a class="page-link" th:href="@{/shop(page=${i})}" th:text="${i + 1}">1</a>
-        </li>
+          <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+              th:if="${i >= currentPage - 4 and i <= currentPage + 4}"
+              th:classappend="${i == currentPage} ? 'active'">
+            <a class="page-link" th:href="@{/shop(page=${i}, sort=${sort}, keyword=${keyword})}" th:text="${i + 1}">1</a>
+          </li>
 
-        <li class="page-item next-btn" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
-          <a class="page-link" th:href="@{/shop(page=${currentPage + 1})}" aria-label="Next">
-            <span aria-hidden="true">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+          <li class="page-item next-btn" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+            <a class="page-link" th:href="@{/shop(page=${currentPage + 1}, sort=${sort}, keyword=${keyword})}" aria-label="Next">
+              <span aria-hidden="true">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     <!-- End Pagination -->
 
   </div>
@@ -128,7 +134,7 @@
     document.getElementById('sortForm').submit();
   }
 
-  // 페이지 로드할 때마다 드롭다운 텍스트 초기화
+  // 페이지 로드할 때마다 선택한 정렬값으로 드롭다운 텍스트 초기화
   document.addEventListener('DOMContentLoaded', function() {
     const sortValue = document.getElementById('sortInput').value;
     let sortText = '정렬';
