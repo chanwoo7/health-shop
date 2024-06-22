@@ -26,14 +26,14 @@ function updateMessage() {
 
     if (today === 0 || today === 6) {  // 일요일 또는 토요일
         const nextMonday = getNextMonday(now);
-        messageElement.textContent = `당일 발송 휴무일. 지금 주문 시 ${formatDate(nextMonday)}에 발송됩니다.`;
+        messageElement.textContent = `오늘은 당일 발송 휴무일입니다. 지금 주문 시 ${formatDate(nextMonday)}에 발송됩니다.`;
     } else {
         const twoPmToday = new Date(now);
         twoPmToday.setHours(14, 0, 0, 0);  // 오후 2시
 
         if (now < twoPmToday) {
             const timeLeft = Math.floor((twoPmToday - now) / 1000);  // 남은 초
-            messageElement.textContent = `당일 발송 가능. ${formatTimeLeft(timeLeft)} 내에 주문 시, 오늘(${formatDate(now)}) 발송됩니다.`;
+            messageElement.textContent = `현재 당일 발송이 가능합니다. ${formatTimeLeft(timeLeft)} 내에 주문 시, 오늘(${formatDate(now)}) 발송됩니다.`;
         } else {
             const twoPmTomorrow = new Date(now);
             twoPmTomorrow.setDate(now.getDate() + 1);
@@ -41,7 +41,7 @@ function updateMessage() {
             const timeLeft = Math.floor((twoPmTomorrow - now) / 1000); // 남은 초
             const tomorrow = new Date(now);
             tomorrow.setDate(now.getDate() + 1);
-            messageElement.textContent = `당일 발송 종료. ${formatTimeLeft(timeLeft)} 내에 주문 시, 내일(${formatDate(tomorrow)}) 발송됩니다.`;
+            messageElement.textContent = `오늘은 당일 발송이 종료되었습니다. ${formatTimeLeft(timeLeft)} 내에 주문 시, 내일(${formatDate(tomorrow)}) 발송됩니다.`;
         }
     }
 }
