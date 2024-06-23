@@ -31,30 +31,35 @@
     <!-- 상품 정렬 및 검색 -->
     <div class="row mb-5 justify-content-center">
       <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-2 d-flex align-items-center">
-            <div class="dropdown w-100">
-              <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <span id="sortDropdownText">정렬</span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                <li><a class="dropdown-item" href="#" onclick="setSort('idDesc', '신상품순')">신상품순</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setSort('priceDesc', '높은 가격순')">높은 가격순</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setSort('priceAsc', '낮은 가격순')">낮은 가격순</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setSort('discountRateDesc', '할인율순')">할인율순</a></li>
-              </ul>
-              <form id="sortForm" th:action="@{/shop}" method="get" style="display:none;">
-                <input type="hidden" name="sort" id="sortInput" th:value="${sort}">
-              </form>
-            </div>
-          </div>
-          <div class="col-md-10">
-            <form th:action="@{/shop}" method="get" class="d-flex">
-              <input type="text" name="keyword" class="form-control me-4" placeholder="Search products..." th:value="${keyword}">
-              <input type="hidden" name="sort" th:value="${sort}">
-              <button type="submit" class="btn btn-primary">Search</button>
+        <div class="row g-3">
+
+          <div class="col-md-2">
+            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="sortDropdownText">정렬</span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+              <li><a class="dropdown-item" onclick="setSort('idDesc', '신상품순')">신상품순</a></li>
+              <li><a class="dropdown-item" onclick="setSort('priceDesc', '높은 가격순')">높은 가격순</a></li>
+              <li><a class="dropdown-item" onclick="setSort('priceAsc', '낮은 가격순')">낮은 가격순</a></li>
+              <li><a class="dropdown-item" onclick="setSort('discountRateDesc', '할인율순')">할인율순</a></li>
+            </ul>
+            <form id="sortForm" th:action="@{/shop}" method="get" style="display:none;">
+              <input type="hidden" name="sort" id="sortInput" th:value="${sort}">
             </form>
           </div>
+
+          <div class="col-md-10">
+            <form th:action="@{/shop}" method="get" class="row g-3">
+              <div class="col-md-10">
+                <input type="text" name="keyword" class="form-control" placeholder="상품명을 검색하세요" th:value="${keyword}">
+                <input type="hidden" name="sort" th:value="${sort}">
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-search">검색</button>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>
