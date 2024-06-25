@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter @Setter
 public class DeliveryAddress extends Address {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "delivery_address_id")
     private Long id;
 
