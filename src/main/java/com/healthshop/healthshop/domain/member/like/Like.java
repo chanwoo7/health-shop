@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class Like {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")
     private Long id;
 
