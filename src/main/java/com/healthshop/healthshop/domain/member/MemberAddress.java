@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter @Setter
 public class MemberAddress extends Address {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_address_id")
     private Long id;
 
