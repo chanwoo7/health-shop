@@ -855,3 +855,7 @@ textarea {
 .btn-search {
   min-width: 100px !important;
 }
+
+.bg-danger {
+  border: 0;
+}

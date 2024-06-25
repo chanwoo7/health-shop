@@ -49,4 +49,12 @@ public class ItemController {
         return "item/item";
     }
 
+    @GetMapping("/shop/item/manage/{itemId}")
+    public String showEditItemForm(@PathVariable Long itemId, Model model) {
+        Item item = itemService.findOne(itemId);
+
+        model.addAttribute("item", item);
+        return "item/manage";
+    }
+
 }
