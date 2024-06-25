@@ -19,13 +19,12 @@
                         <i class="me-1"></i>
                     </button>
                 </div>
-                <!-- 상품 제목 및 수정/삭제 버튼 -->
+                <!-- 상품 제목 및 상품 관리 페이지 버튼 -->
                 <div style="display: flex; align-items: center;">
                     <h1 th:text="${item.name}" class="display-5 fw-bolder text-black me-2">Shop item</h1>
                     <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                        <a class="btn small-button mt-3" type="button" th:href="@{'/shop/item/edit/' + ${item.id}}">수정</a>
+                        <a class="btn small-button mt-3 bg-danger" type="button" th:href="@{'/shop/item/manage/' + ${item.id}}">상품 관리 페이지</a>
                     </th:block>
-                    <!-- TODO: 상품 삭제 버튼 추가 -->
                 </div>
                 <!-- 상품 가격 -->
                 <div class="fs-5 mb-4">
