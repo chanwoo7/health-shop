@@ -41,3 +41,6 @@ out/
 
 ### dummy data ###
 /src/main/resources/dummy_data.sql
+
+### .env ###
+.env
