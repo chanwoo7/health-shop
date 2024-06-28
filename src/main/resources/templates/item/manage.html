@@ -52,13 +52,17 @@
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <label class="form-label" th:for="discountRate">할인율<span class="highlight fs-5">*</span></label>
+                                    <label class="form-label" th:for="discountRate">할인율 (% 단위이며, 0 이상 100 미만의 정수)<span class="highlight fs-5">*</span></label>
                                     <input type="number" th:field="*{discountRate}" class="form-control"
                                            th:classappend="${#fields.hasErrors('discountRate')} ? 'is-invalid' : ''"/>
                                     <div th:if="${#fields.hasErrors('discountRate')}" class="invalid-feedback" th:errors="*{discountRate}"></div>
                                 </div>
 
 <!--                                TODO 2: 정가 및 할인율에 따라 동적으로 할인가 보여주도록 추가-->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label">변경될 할인가</label>
+                                    <input type="text" id="discountedPrice" class="form-control" disabled/>
+                                </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" th:for="brand">브랜드명<span class="highlight fs-5">*</span></label>
@@ -107,6 +111,29 @@
     function validateForm() {
         return confirm("정말로 변경사항을 반영하시겠습니까?");
     }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const priceInput = document.getElementById('price');
+        const discountRateInput = document.getElementById('discountRate');
+        const discountedPriceInput = document.getElementById('discountedPrice');
+
+        function calculateDiscountedPrice() {
+            const price = parseFloat(priceInput.value);
+            const discountRate = parseFloat(discountRateInput.value);
+            if (!isNaN(price) && !isNaN(discountRate) && discountRate >= 0 && discountRate < 100) {
+                const discountedPrice = price * (1 - discountRate / 100);
+                discountedPriceInput.value = discountedPrice.toLocaleString(undefined, {maximumFractionDigits: 0}) + '원';
+            } else {
+                discountedPriceInput.value = '';
+            }
+        }
+
+        priceInput.addEventListener('input', calculateDiscountedPrice);
+        discountRateInput.addEventListener('input', calculateDiscountedPrice);
+
+        // 초기 로드 시 할인가 계산
+        calculateDiscountedPrice();
+    });
 </script>
 
 </body>
