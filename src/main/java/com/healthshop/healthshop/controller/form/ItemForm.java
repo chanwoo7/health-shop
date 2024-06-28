@@ -6,12 +6,12 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ItemForm {
-    private Long id;
+    private Long itemId;
 
     @NotBlank(message = "상품명은 필수 입력값입니다.")
     private String name;
 
-    private Integer category_id;
+    private Long categoryId;
 
     @NotNull(message = "상품 가격은 필수 입력값입니다.")
     private Integer price;
