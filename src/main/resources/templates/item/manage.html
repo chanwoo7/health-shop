@@ -34,7 +34,15 @@
                                     <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></div>
                                 </div>
 
-<!--                                TODO 1: select 태그로 카테고리 입력-->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" th:for="categoryId">카테고리<span class="highlight text-danger fs-5">*</span></label>
+                                    <select th:field="*{categoryId}" class="form-control">
+                                        <option th:each="category : ${categories}"
+                                                th:value="${category.id}"
+                                                th:text="${category.name}"
+                                                th:selected="${category.id} == ${itemForm.categoryId}">Category</option>
+                                    </select>
+                                </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" th:for="price">정가<span class="highlight text-danger fs-5">*</span></label>
@@ -95,6 +103,11 @@
 <!-- Bootstrap core JS-->
 <script src="/js/bootstrap.bundle.min.js"></script>
 <!-- 당일 배송 메시지 -->
+<script>
+    function validateForm() {
+        return confirm("정말로 변경사항을 반영하시겠습니까?");
+    }
+</script>
 
 </body>
 </html>

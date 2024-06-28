@@ -2,7 +2,9 @@ package com.healthshop.healthshop.controller;
 
 import com.healthshop.healthshop.controller.dto.ItemDto;
 import com.healthshop.healthshop.controller.form.ItemForm;
+import com.healthshop.healthshop.domain.item.Category;
 import com.healthshop.healthshop.domain.item.Item;
+import com.healthshop.healthshop.service.CategoryService;
 import com.healthshop.healthshop.service.ItemService;
 import com.healthshop.healthshop.util.ItemConverter;
 import jakarta.validation.Valid;
@@ -23,6 +25,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CategoryService categoryService;
 
     @GetMapping("/shop")
     public String shop(@RequestParam(defaultValue = "0") int page,
@@ -67,7 +70,9 @@ public class ItemController {
         itemForm.setDescription(item.getDescription());
         itemForm.setStockQuantity(item.getStockQuantity());  // 직접 입력은 불가, 수량 증가 버튼으로 늘리도록
 
+        List<Category> categories = categoryService.findCategories();
         model.addAttribute("itemForm", itemForm);
+        model.addAttribute("categories", categories);
         return "item/manage";
     }
 
@@ -80,7 +85,7 @@ public class ItemController {
         }
         Item item = itemService.findOne(itemId);
         item.setName(form.getName());
-        // itemService.setItemCategoryById(itemId, form.getCategoryId());
+        itemService.setItemCategoryById(itemId, form.getCategoryId());
         item.setPrice(form.getPrice());
         item.setDiscountRate(form.getDiscountRate());
         item.setBrand(form.getBrand());
