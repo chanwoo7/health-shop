@@ -9,7 +9,6 @@ import com.healthshop.healthshop.service.ItemService;
 import com.healthshop.healthshop.util.ItemConverter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class ItemController {
 
     private final ItemService itemService;
@@ -78,9 +76,16 @@ public class ItemController {
 
     @PostMapping("/shop/item/manage/{itemId}")
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
+                               BindingResult bindingResult,
                                @PathVariable Long itemId,
-                               BindingResult bindingResult) {
+                               Model model) {
         if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.findCategories();
+
+            Item item = itemService.findOne(itemId);
+            reinitializeForm(form, item);
+            model.addAttribute("itemForm", form);
+            model.addAttribute("categories", categories);
             return "item/manage";
         }
         Item item = itemService.findOne(itemId);
@@ -95,6 +100,12 @@ public class ItemController {
         itemService.saveItem(item);
 
         return "redirect:/shop/item/{itemId}";
+    }
+
+    // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
+    private void reinitializeForm(ItemForm form, Item item) {
+        form.setName(item.getName());
+        form.setStockQuantity(item.getStockQuantity());
     }
 
 }
