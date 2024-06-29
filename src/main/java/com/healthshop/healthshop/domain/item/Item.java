@@ -54,4 +54,11 @@ public class Item {
         }
         this.stockQuantity = restStock;
     }
+
+    /**
+     * 상품 카테고리 ID 조회
+     */
+    public Long getCategoryId() {
+        return this.category != null ? this.category.getId() : null;
+    }
 }
