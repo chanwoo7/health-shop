@@ -90,35 +90,7 @@
     </div>
 </section>
 
-<script>
-    function validatePasswords() {
-        const password = document.querySelector("[name='password']").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
-        const errorDiv = document.getElementById("confirmPasswordError");
-
-        if (password !== confirmPassword) {
-            errorDiv.style.display = "block";
-            return false; // Prevent form submission
-        } else {
-            errorDiv.style.display = "none";
-            return true; // Allow form submission
-        }
-    }
-
-    function validateForm() {
-        const passwordValid = validatePasswords();
-        const termsChecked = document.getElementById("terms").checked;
-        const termsErrorDiv = document.getElementById("termsError");
-
-        if (!termsChecked) {
-            termsErrorDiv.style.display = "block";
-        } else {
-            termsErrorDiv.style.display = "none";
-        }
-
-        return passwordValid && termsChecked;
-    }
-</script>
+<script src="/js/validate-signup.js"></script>
 
 </body>
 </html>
