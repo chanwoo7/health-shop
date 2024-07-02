@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -64,7 +66,7 @@ public class ItemController {
         itemForm.setPrice(item.getPrice());
         itemForm.setDiscountRate(item.getDiscountRate());
         itemForm.setBrand(item.getBrand());
-        // itemForm.setImgPath(item.getImgPath());
+        itemForm.setImgPath(item.getImgPath());
         itemForm.setDescription(item.getDescription());
         itemForm.setStockQuantity(item.getStockQuantity());  // 직접 입력은 불가, 수량 증가 버튼으로 늘리도록
 
@@ -78,7 +80,8 @@ public class ItemController {
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
                                BindingResult bindingResult,
                                @PathVariable Long itemId,
-                               Model model) {
+                               @RequestParam("imgFile") MultipartFile imgFile,
+                               Model model) throws IOException {
         if (bindingResult.hasErrors()) {
             List<Category> categories = categoryService.findCategories();
 
@@ -94,7 +97,10 @@ public class ItemController {
         item.setPrice(form.getPrice());
         item.setDiscountRate(form.getDiscountRate());
         item.setBrand(form.getBrand());
-        // item.setImgPath(form.getImgPath());
+        if (!imgFile.isEmpty()) {
+            String imgPath = itemService.saveImage(imgFile);
+            item.setImgPath(imgPath);
+        }
         item.setDescription(form.getDescription());
         item.setStockQuantity(item.getStockQuantity());
         itemService.saveItem(item);
