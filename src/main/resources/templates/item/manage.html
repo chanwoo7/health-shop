@@ -15,7 +15,7 @@
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
 
-                            <form role="form" th:action="@{/shop/item/manage/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" method="post" onsubmit="return validateForm()">
+                            <form role="form" th:action="@{/shop/item/manage/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                                 <h2 class="text-center bold-text text-black mb-4" th:text="*{name}">Item Name</h2>
                                 <h6 class="text-center text-black mb-5">상품 관리 페이지</h6>
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -71,6 +71,20 @@
                                 </div>
 
 <!--                                TODO 3: 사진 입력-->
+<!--                                <div data-mdb-input-init class="form-outline mb-4">-->
+<!--                                    <label class="form-label">상품 이미지</label>-->
+<!--                                    <img th:src="@{${itemForm.imgPath}}" id="currentImage" class="img-fluid" alt="상품 이미지">-->
+<!--                                    <label class="form-label mt-3" for="imageUpload">상품 이미지 변경</label>-->
+<!--                                    <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*" onchange="previewImage(event)">-->
+<!--                                </div>-->
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" th:for="imgPath">상품 이미지</label>
+                                    <input type="file" id="imgPath" name="imgFile" class="form-control" accept="image/*" onchange="previewImage(event)"/>
+                                    <div class="mt-3">
+                                        <img id="imgPreview" th:src="@{${itemForm.imgPath}}" class="img-fluid" alt="Image Preview">
+                                    </div>
+                                </div>
 
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" th:for="description">상품 설명</label>
@@ -88,7 +102,7 @@
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" data-mdb-button-init
-                                            data-mdb-ripple-init class="btn bg-warning btn-block text-body">수정</button>
+                                            data-mdb-ripple-init class="btn bg-warning btn-block text-body">상품 수정</button>
                                 </div>
 
                             </form>
@@ -107,6 +121,20 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/validate-form.js"></script>
 <script src="/js/discount-calculator.js"></script>
+<script>
+    function validateForm() {
+        return confirm("정말로 변경사항을 반영하시겠습니까?");
+    }
+
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            const output = document.getElementById('imgPreview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
 </body>
 </html>

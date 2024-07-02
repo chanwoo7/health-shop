@@ -3,6 +3,7 @@ package com.healthshop.healthshop.controller.form;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter @Setter
 public class ItemForm {
@@ -25,6 +26,8 @@ public class ItemForm {
     private String brand;
 
     private String imgPath;
+
+    private MultipartFile imgFile;
 
     @NotBlank(message = "상품 설명은 필수 입력값입니다.")
     private String description;

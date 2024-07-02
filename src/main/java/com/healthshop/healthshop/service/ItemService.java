@@ -6,12 +6,18 @@ import com.healthshop.healthshop.repository.CategoryRepository;
 import com.healthshop.healthshop.repository.ItemRepository;
 import com.healthshop.healthshop.repository.ItemSpecifications;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -21,6 +27,11 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
+
+    @Value("${image.upload.dir}")
+    private String uploadDir;
+
+    private static final String RELATIVE_PATH_PREFIX = "/images/items/";
 
     @Transactional
     public void saveItem(Item item) {
@@ -48,6 +59,23 @@ public class ItemService {
         };
 
         return itemRepository.findAll(spec, pageRequest);
+    }
+
+    @Transactional
+    public String saveImage(MultipartFile file) throws IOException {
+        // 경로 존재하지 않으면 디렉토리 생성
+        if (!Files.exists(Paths.get(uploadDir))) {
+            Files.createDirectories(Paths.get(uploadDir));
+        }
+
+        // 중복 방지를 위해 파일명에 밀리초를 붙여서 저장
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        Path filePath = Paths.get(uploadDir, fileName);
+
+        // 저장
+        Files.write(filePath, file.getBytes());
+
+        return RELATIVE_PATH_PREFIX + fileName;
     }
 
     @Transactional

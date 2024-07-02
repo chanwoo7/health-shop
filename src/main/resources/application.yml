@@ -19,12 +19,26 @@ spring:
 #        show_sql: true
         format_sql: true
     defer-datasource-initialization: true  # hibernate 초기화 이후 data.sql이 실행되도록 변경
+
   sql:
     init:
       mode: never  # data.sql 스크립트 실행 여부
+
+  devtools:
+    livereload:
+      enabled: true  # 코드 변경 시 브라우저를 자동으로 새로고침
+    restart:
+      enabled: true  # 코드 변경 시 애플리케이션을 자동으로 재시작
+
+  thymeleaf:
+    cache: false  # 템플릿 파일 캐싱 비활성화, 운영 시 활성화로 변경할 것
 
 logging:
   level:
     org:
       hibernate.SQL: debug
 #      springframework.security: debug  # 임시로 추가
+
+image:
+  upload:
+    dir: src/main/resources/static/images/items/  # 추후 수정 필요
