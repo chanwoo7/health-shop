@@ -70,14 +70,6 @@
                                     <div th:if="${#fields.hasErrors('brand')}" class="invalid-feedback" th:errors="*{brand}"></div>
                                 </div>
 
-<!--                                TODO 3: 사진 입력-->
-<!--                                <div data-mdb-input-init class="form-outline mb-4">-->
-<!--                                    <label class="form-label">상품 이미지</label>-->
-<!--                                    <img th:src="@{${itemForm.imgPath}}" id="currentImage" class="img-fluid" alt="상품 이미지">-->
-<!--                                    <label class="form-label mt-3" for="imageUpload">상품 이미지 변경</label>-->
-<!--                                    <input type="file" id="imageUpload" name="image" class="form-control" accept="image/*" onchange="previewImage(event)">-->
-<!--                                </div>-->
-
                                 <div data-mdb-input-init class="form-outline mb-4">
                                     <label class="form-label" th:for="imgPath">상품 이미지</label>
                                     <input type="file" id="imgPath" name="imgFile" class="form-control" accept="image/*" onchange="previewImage(event)"/>
@@ -117,24 +109,11 @@
 
 <!-- Footer-->
 <footer th:replace="~{fragments/footer :: footer}"></footer>
-<!-- Bootstrap core JS-->
+
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/validate-form.js"></script>
 <script src="/js/discount-calculator.js"></script>
-<script>
-    function validateForm() {
-        return confirm("정말로 변경사항을 반영하시겠습니까?");
-    }
-
-    function previewImage(event) {
-        const reader = new FileReader();
-        reader.onload = function(){
-            const output = document.getElementById('imgPreview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
+<script src="/js/preview-image.js"></script>
 
 </body>
 </html>
