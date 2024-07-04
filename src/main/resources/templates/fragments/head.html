@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<head th:fragment="head(title)">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="Untree.co">
@@ -14,5 +14,5 @@
   <link href="/css/tiny-slider.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
 
-  <title>HealthShop - Your Strength Starts Here</title>
+  <title th:text="${title}">HealthShop - Your Strength Starts Here</title>
 </head>
