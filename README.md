@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://github.com/chanwoo7/health-shop/blob/main/src/main/resources/static/images/logo-with-text-darkmode.png?raw=true#gh-dark-mode-only" width="500">
-  <img src="https://github.com/chanwoo7/health-shop/blob/main/src/main/resources/static/images/logo-with-text-lightmode.png?raw=true#gh-light-mode-only" width="500">
+  <img src="https://github.com/chanwoo7/health-shop/blob/main/src/main/resources/static/images/logo-with-text-darkmode.png?raw=true#gh-dark-mode-only" width="350">
+  <img src="https://github.com/chanwoo7/health-shop/blob/main/src/main/resources/static/images/logo-with-text-lightmode.png?raw=true#gh-light-mode-only" width="350">
 </p>
 <h1 align="center">HealthShop - 헬스용품 쇼핑몰 프로젝트 💪</h1>
 
