@@ -179,7 +179,9 @@ a {
       right: 0px;
       z-index: 2;
       max-width: 780px;
-      left: -20px; }
+      left: -20px;
+      filter: drop-shadow(-10px 10px 30px black);
+    }
       @media (min-width: 768px) {
         .hero .hero-img-wrap img {
           right: 0px;
@@ -862,4 +864,22 @@ textarea {
 
 .bg-warning {
   border: 0;
+}
+
+/* Footer */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.footer-description {
+  flex: 0 0 auto;
+  text-align: left;
+}
+
+.footer-links {
+  flex: 0 0 auto;
+  text-align: right;
 }
