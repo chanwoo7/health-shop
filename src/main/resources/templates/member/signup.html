@@ -3,11 +3,11 @@
 <head th:replace="~{/fragments/head-other :: head('회원가입 - HealthShop', '/css/members/sign.css')}">
 </head>
 <body>
-<section class="vh-100 bg-image"
-         style="background-image: url('/images/fitness-center.webp');">
+<section class="bg-image"
+         style="background-image: url('/images/fitness-center.webp'); min-height: 100vh;">
     <div class="mask d-flex align-items-center h-100 gradient-custom-1">
-        <div class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center min-vh-100">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
@@ -16,7 +16,7 @@
                                     <img src="/images/logo.png" alt="Logo" class="mb-4" style="width: 100px; height: auto;">
                                 </a>
                             </div>
-                            <h2 class="text-center mb-5">Sign Up for HealthShop</h2>
+                            <h2 class="text-center mb-5"><b>Sign Up for HealthShop</b></h2>
 
                             <form role="form" action="/signup" th:object="${signupForm}" method="post" onsubmit="return validateForm()">
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
