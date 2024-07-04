@@ -863,3 +863,21 @@ textarea {
 .bg-warning {
   border: 0;
 }
+
+/* Footer */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.footer-description {
+  flex: 0 0 auto;
+  text-align: left;
+}
+
+.footer-links {
+  flex: 0 0 auto;
+  text-align: right;
+}
