@@ -18,4 +18,8 @@ public class HomeController {
         return "about";
     }
 
+    @RequestMapping("/services")
+    public String services() {
+        return "services";
+    }
 }

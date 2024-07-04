@@ -1,0 +1,103 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('서비스 - HealthShop')}">
+</head>
+
+<body>
+
+<!-- Start Header/Navigation -->
+<header th:replace="~{fragments/header :: navigation('services')}"></header>
+<!-- End Header/Navigation -->
+
+<!-- Start Hero Section -->
+<div class="hero gradient-custom">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5">
+        <div class="intro-excerpt">
+          <h1 class="extra-bold-text">Services</h1>
+          <p class="mb-4">
+            HealthShop은 사용자 친화적인 웹사이트와 빠른 무료 배송으로 편리한 쇼핑 경험을 제공합니다. 24시간 AS 서비스와 무료 교환 및 반품으로 고객 만족을 보장합니다. 최고의 품질과 신뢰성을 갖춘 헬스용품으로 여러분의 건강한 삶을 지원합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
+
+
+<!-- Start Why Choose Us Section -->
+<div class="why-choose-section">
+  <div class="container">
+    <div class="row my-5">
+
+      <div class="col-12 col-md-6 mb-5">
+        <div class="feature">
+          <div class="img-wrap mb-3">
+            <img src="/images/service-shipping.webp" alt="Image" class="img-fluid">
+          </div>
+          <div class="icon">
+            <img src="/images/truck.svg" alt="Image" class="imf-fluid">
+          </div>
+          <h3 class="bold-text">당일 &amp; 무료 배송</h3>
+          <p class="mb-5">모든 주문은 <b class="text-black bold-text">당일 신속하게 처리</b>되어 빠르게 배송되며, <b class="text-black">전 제품 무료 배송</b> 서비스를 제공합니다.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-5">
+        <div class="feature">
+          <div class="img-wrap mb-3">
+            <img src="/images/service-shopping.webp" alt="Image" class="img-fluid">
+          </div>
+          <div class="icon">
+            <img src="/images/bag.svg" alt="Image" class="imf-fluid">
+          </div>
+          <h3 class="bold-text">편리한 쇼핑 경험</h3>
+          <p class="mb-5">쉽게 원하는 제품을 찾을 수 있으며, <b class="text-black">간편한 결제 시스템</b>으로 편리한 쇼핑 경험을 보장합니다.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-5">
+        <div class="feature">
+          <div class="img-wrap mb-3">
+            <img src="/images/service-as.webp" alt="Image" class="img-fluid">
+          </div>
+          <div class="icon">
+            <img src="/images/support.svg" alt="Image" class="imf-fluid">
+          </div>
+          <h3 class="bold-text">24시간 AS 가능</h3>
+          <p class="mb-5">언제든지 필요한 도움을 받을 수 있도록 <b class="text-black">24시간 상시 AS 서비스</b>를 제공하고 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 mb-5">
+        <div class="feature">
+          <div class="img-wrap mb-3">
+            <img src="/images/service-exchange.webp" alt="Image" class="img-fluid">
+          </div>
+          <div class="icon">
+            <img src="/images/return.svg" alt="Image" class="imf-fluid">
+          </div>
+          <h3 class="bold-text">무료 교환 및 반품</h3>
+          <p class="mb-5">전 제품에 대해 <b class="text-black">무료 교환 및 반품 서비스</b>를 제공하여 안심하고 쇼핑할 수 있습니다.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- End Why Choose Us Section -->
+
+<!-- Start Footer Section -->
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+<!-- End Footer Section -->
+
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/tiny-slider.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+
+</html>
