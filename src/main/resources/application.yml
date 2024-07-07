@@ -33,6 +33,11 @@ spring:
   thymeleaf:
     cache: false  # 템플릿 파일 캐싱 비활성화, 운영 시 활성화로 변경할 것
 
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true  # HTML form에서 GET, POST 뿐 아니라 PUT, DELETE도 사용
+
 logging:
   level:
     org:

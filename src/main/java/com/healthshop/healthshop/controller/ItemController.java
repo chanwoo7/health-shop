@@ -114,4 +114,10 @@ public class ItemController {
         form.setStockQuantity(item.getStockQuantity());
     }
 
+    @DeleteMapping("/shop/item/manage/delete/{itemId}")
+    public String deleteItem(@PathVariable Long itemId) {
+        itemService.deleteItem(itemId);
+        return "redirect:/shop";
+    }
+
 }
