@@ -76,7 +76,7 @@ public class ItemController {
         return "item/manage";
     }
 
-    @PostMapping("/shop/item/manage/{itemId}")
+    @PutMapping("/shop/item/manage/{itemId}")
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
                                BindingResult bindingResult,
                                @PathVariable Long itemId,
@@ -108,16 +108,16 @@ public class ItemController {
         return "redirect:/shop/item/{itemId}";
     }
 
-    // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
-    private void reinitializeForm(ItemForm form, Item item) {
-        form.setName(item.getName());
-        form.setStockQuantity(item.getStockQuantity());
-    }
-
     @DeleteMapping("/shop/item/manage/delete/{itemId}")
     public String deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return "redirect:/shop";
+    }
+
+    // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
+    private void reinitializeForm(ItemForm form, Item item) {
+        form.setName(item.getName());
+        form.setStockQuantity(item.getStockQuantity());
     }
 
 }
