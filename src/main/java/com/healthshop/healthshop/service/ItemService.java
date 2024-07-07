@@ -38,6 +38,11 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void deleteItem(Long itemId) {
+        itemRepository.deleteById(itemId);
+    }
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
