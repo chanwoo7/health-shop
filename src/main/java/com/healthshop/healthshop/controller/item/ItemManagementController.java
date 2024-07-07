@@ -1,16 +1,12 @@
-package com.healthshop.healthshop.controller;
+package com.healthshop.healthshop.controller.item;
 
-import com.healthshop.healthshop.controller.dto.ItemDto;
 import com.healthshop.healthshop.controller.form.ItemForm;
 import com.healthshop.healthshop.domain.item.Category;
 import com.healthshop.healthshop.domain.item.Item;
 import com.healthshop.healthshop.service.CategoryService;
 import com.healthshop.healthshop.service.ItemService;
-import com.healthshop.healthshop.util.ItemConverter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,41 +17,14 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("/shop/item/manage")
 @RequiredArgsConstructor
-public class ItemController {
+public class ItemManagementController {
 
-    private final ItemService itemService;
-    private final CategoryService categoryService;
+    public final ItemService itemService;
+    public final CategoryService categoryService;
 
-    @GetMapping("/shop")
-    public String shop(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "") String keyword,
-                       @RequestParam(defaultValue = "idDesc") String sort,
-                       Model model) {
-        PageRequest pageRequest = PageRequest.of(page, 12);
-        Page<Item> itemsPage = itemService.findItems(keyword, sort, pageRequest);
-        List<ItemDto> itemDtos = itemsPage.getContent().stream()
-                .map(ItemConverter::toDto)
-                .toList();
-
-        model.addAttribute("items", itemDtos);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", itemsPage.getTotalPages());
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("sort", sort);
-        return "shop";
-    }
-
-    @GetMapping("/shop/item/{itemId}")
-    public String getItem(@PathVariable Long itemId, Model model) {
-        Item item = itemService.findOne(itemId);
-        ItemDto itemDto = ItemConverter.toDto(item);
-
-        model.addAttribute("item", itemDto);
-        return "item/item";
-    }
-
-    @GetMapping("/shop/item/manage/{itemId}")
+    @GetMapping("/{itemId}")
     public String showEditItemForm(@PathVariable Long itemId, Model model) {
         Item item = itemService.findOne(itemId);
 
@@ -76,7 +45,7 @@ public class ItemController {
         return "item/manage";
     }
 
-    @PutMapping("/shop/item/manage/{itemId}")
+    @PutMapping("/{itemId}")
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
                                BindingResult bindingResult,
                                @PathVariable Long itemId,
@@ -108,7 +77,7 @@ public class ItemController {
         return "redirect:/shop/item/{itemId}";
     }
 
-    @DeleteMapping("/shop/item/manage/delete/{itemId}")
+    @DeleteMapping("/delete/{itemId}")
     public String deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return "redirect:/shop";
