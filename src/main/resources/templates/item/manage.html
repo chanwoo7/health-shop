@@ -29,9 +29,9 @@
 
                             </div>
 
-                            <form role="form" th:action="@{/shop/item/manage/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                            <form role="form" th:action="@{/shop/item/manage/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" th:method="put" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="postCsrfToken"/>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="putCsrfToken"/>
 
                                 <h2 class="text-center bold-text text-black mb-4" th:text="*{name}">Item Name</h2>
                                 <h6 class="text-center text-black mb-5">상품 관리 페이지</h6>
