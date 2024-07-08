@@ -32,8 +32,8 @@ public class ItemForm {
     @NotBlank(message = "상품 설명은 필수 입력값입니다.")
     private String description;
 
-//    @NotNull(message = "재고수량은 필수 입력값입니다.")
-//    @Min(value = 0, message = "재고수량은 양수값이어야 합니다.")
+    @NotNull(message = "재고수량은 필수 입력값입니다.")
+    @Min(value = 0, message = "재고수량은 양수값이어야 합니다.")
     private Integer stockQuantity;
 
 }

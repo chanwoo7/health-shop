@@ -25,6 +25,17 @@ public class ItemManagementController {
     public final CategoryService categoryService;
 
     /**
+     * 상품 생성 폼
+     */
+    @GetMapping("/create")
+    public String showCreateItemForm(Model model) {
+        model.addAttribute("itemForm", new ItemForm());
+        List<Category> categories = categoryService.findCategories();
+        model.addAttribute("categories", categories);
+        return "item/create";
+    }
+
+    /**
      * 상품 정보 READ
      */
     @GetMapping("/{itemId}")
