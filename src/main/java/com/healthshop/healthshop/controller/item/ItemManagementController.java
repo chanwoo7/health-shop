@@ -24,6 +24,9 @@ public class ItemManagementController {
     public final ItemService itemService;
     public final CategoryService categoryService;
 
+    /**
+     * 상품 정보 READ
+     */
     @GetMapping("/{itemId}")
     public String showEditItemForm(@PathVariable Long itemId, Model model) {
         Item item = itemService.findOne(itemId);
@@ -45,6 +48,9 @@ public class ItemManagementController {
         return "item/manage";
     }
 
+    /**
+     * 상품 정보 UPDATE
+     */
     @PutMapping("/{itemId}")
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
                                BindingResult bindingResult,
@@ -77,7 +83,10 @@ public class ItemManagementController {
         return "redirect:/shop/item/{itemId}";
     }
 
-    @DeleteMapping("/delete/{itemId}")
+    /**
+     * 상품 정보 DELETE
+     */
+    @DeleteMapping("/{itemId}")
     public String deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return "redirect:/shop";
