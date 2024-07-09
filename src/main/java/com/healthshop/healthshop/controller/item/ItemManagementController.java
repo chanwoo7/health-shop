@@ -36,6 +36,26 @@ public class ItemManagementController {
     }
 
     /**
+     * 상품 정보 CREATE
+     */
+    @PostMapping("/create")
+    public String createItem(@ModelAttribute("itemForm") @Valid ItemForm form,
+                             BindingResult bindingResult,
+                             @RequestParam("imgFile") MultipartFile imgFile,
+                             Model model) throws IOException {
+        if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.findCategories();
+            model.addAttribute("categories", categories);
+            return "item/create";
+        }
+
+        Item item = new Item();
+        setItemDetails(form, imgFile, item);
+
+        return "redirect:/shop";
+    }
+
+    /**
      * 상품 정보 READ
      */
     @GetMapping("/{itemId}")
@@ -78,18 +98,7 @@ public class ItemManagementController {
             return "item/manage";
         }
         Item item = itemService.findOne(itemId);
-        item.setName(form.getName());
-        itemService.setItemCategoryById(itemId, form.getCategoryId());
-        item.setPrice(form.getPrice());
-        item.setDiscountRate(form.getDiscountRate());
-        item.setBrand(form.getBrand());
-        if (!imgFile.isEmpty()) {
-            String imgPath = itemService.saveImage(imgFile);
-            item.setImgPath(imgPath);
-        }
-        item.setDescription(form.getDescription());
-        item.setStockQuantity(item.getStockQuantity());
-        itemService.saveItem(item);
+        setItemDetails(form, imgFile, item);
 
         return "redirect:/shop/item/{itemId}";
     }
@@ -101,6 +110,23 @@ public class ItemManagementController {
     public String deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return "redirect:/shop";
+    }
+
+    // Item 객체에 상품 상세 정보 설정
+    private void setItemDetails(@ModelAttribute("itemForm") @Valid ItemForm form, @RequestParam("imgFile") MultipartFile imgFile, Item item) throws IOException {
+        item.setName(form.getName());
+        item.setPrice(form.getPrice());
+        item.setDiscountRate(form.getDiscountRate());
+        item.setBrand(form.getBrand());
+        if (!imgFile.isEmpty()) {
+            String imgPath = itemService.saveImage(imgFile);
+            item.setImgPath(imgPath);
+        }
+        item.setDescription(form.getDescription());
+        item.setStockQuantity(form.getStockQuantity());
+        itemService.saveItem(item);
+
+        itemService.setItemCategoryById(item.getId(), form.getCategoryId());
     }
 
     // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
