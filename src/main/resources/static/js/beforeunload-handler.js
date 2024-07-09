@@ -4,14 +4,23 @@ function handleBeforeUnload(event) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const form = document.querySelector('form');
+    const forms = document.querySelectorAll('form');
 
-    form.addEventListener('change', (event) => {
-        window.addEventListener('beforeunload', handleBeforeUnload);
-    });
+    forms.forEach(form => {
+        const formElements = form.querySelectorAll('input, select, textarea');
 
-    // 제출할 때는 이벤트 리스너 제거
-    form.addEventListener('submit', (event) => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
+        formElements.forEach(element => {
+            element.addEventListener('input', (event) => {
+                window.addEventListener('beforeunload', handleBeforeUnload);
+            });
+
+            element.addEventListener('change', (event) => {
+                window.addEventListener('beforeunload', handleBeforeUnload);
+            });
+        });
+
+        form.addEventListener('submit', (event) => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        });
     });
 });

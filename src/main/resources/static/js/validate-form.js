@@ -1,10 +1,8 @@
 function validateCreateItemForm() {
-    window.removeEventListener('beforeunload', handleBeforeUnload);
     return confirm("정말로 이 내용대로 상품을 생성하시겠습니까?");
 }
 
 function validateUpdateItemForm() {
-    window.removeEventListener('beforeunload', handleBeforeUnload);
     return confirm("정말로 변경사항을 반영하시겠습니까?");
 }
 
