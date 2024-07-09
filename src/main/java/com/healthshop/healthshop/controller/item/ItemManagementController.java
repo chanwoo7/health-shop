@@ -24,6 +24,40 @@ public class ItemManagementController {
     public final ItemService itemService;
     public final CategoryService categoryService;
 
+    /**
+     * 상품 생성 폼
+     */
+    @GetMapping("/create")
+    public String showCreateItemForm(Model model) {
+        model.addAttribute("itemForm", new ItemForm());
+        List<Category> categories = categoryService.findCategories();
+        model.addAttribute("categories", categories);
+        return "item/create";
+    }
+
+    /**
+     * 상품 정보 CREATE
+     */
+    @PostMapping("/create")
+    public String createItem(@ModelAttribute("itemForm") @Valid ItemForm form,
+                             BindingResult bindingResult,
+                             @RequestParam("imgFile") MultipartFile imgFile,
+                             Model model) throws IOException {
+        if (bindingResult.hasErrors()) {
+            List<Category> categories = categoryService.findCategories();
+            model.addAttribute("categories", categories);
+            return "item/create";
+        }
+
+        Item item = new Item();
+        setItemDetails(form, imgFile, item);
+
+        return "redirect:/shop";
+    }
+
+    /**
+     * 상품 정보 READ
+     */
     @GetMapping("/{itemId}")
     public String showEditItemForm(@PathVariable Long itemId, Model model) {
         Item item = itemService.findOne(itemId);
@@ -45,6 +79,9 @@ public class ItemManagementController {
         return "item/manage";
     }
 
+    /**
+     * 상품 정보 UPDATE
+     */
     @PutMapping("/{itemId}")
     public String editItemForm(@ModelAttribute("itemForm") @Valid ItemForm form,
                                BindingResult bindingResult,
@@ -55,14 +92,29 @@ public class ItemManagementController {
             List<Category> categories = categoryService.findCategories();
 
             Item item = itemService.findOne(itemId);
-            reinitializeForm(form, item);
+            form.setName(item.getName());
             model.addAttribute("itemForm", form);
             model.addAttribute("categories", categories);
             return "item/manage";
         }
         Item item = itemService.findOne(itemId);
+        setItemDetails(form, imgFile, item);
+
+        return "redirect:/shop/item/{itemId}";
+    }
+
+    /**
+     * 상품 정보 DELETE
+     */
+    @DeleteMapping("/{itemId}")
+    public String deleteItem(@PathVariable Long itemId) {
+        itemService.deleteItem(itemId);
+        return "redirect:/shop";
+    }
+
+    // Item 객체에 상품 상세 정보 설정
+    private void setItemDetails(@ModelAttribute("itemForm") @Valid ItemForm form, @RequestParam("imgFile") MultipartFile imgFile, Item item) throws IOException {
         item.setName(form.getName());
-        itemService.setItemCategoryById(itemId, form.getCategoryId());
         item.setPrice(form.getPrice());
         item.setDiscountRate(form.getDiscountRate());
         item.setBrand(form.getBrand());
@@ -71,22 +123,10 @@ public class ItemManagementController {
             item.setImgPath(imgPath);
         }
         item.setDescription(form.getDescription());
-        item.setStockQuantity(item.getStockQuantity());
+        item.setStockQuantity(form.getStockQuantity());
         itemService.saveItem(item);
 
-        return "redirect:/shop/item/{itemId}";
-    }
-
-    @DeleteMapping("/delete/{itemId}")
-    public String deleteItem(@PathVariable Long itemId) {
-        itemService.deleteItem(itemId);
-        return "redirect:/shop";
-    }
-
-    // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
-    private void reinitializeForm(ItemForm form, Item item) {
-        form.setName(item.getName());
-        form.setStockQuantity(item.getStockQuantity());
+        itemService.setItemCategoryById(item.getId(), form.getCategoryId());
     }
 
 }
