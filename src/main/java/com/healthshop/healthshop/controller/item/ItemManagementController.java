@@ -92,7 +92,7 @@ public class ItemManagementController {
             List<Category> categories = categoryService.findCategories();
 
             Item item = itemService.findOne(itemId);
-            reinitializeForm(form, item);
+            form.setName(item.getName());
             model.addAttribute("itemForm", form);
             model.addAttribute("categories", categories);
             return "item/manage";
@@ -127,12 +127,6 @@ public class ItemManagementController {
         itemService.saveItem(item);
 
         itemService.setItemCategoryById(item.getId(), form.getCategoryId());
-    }
-
-    // 상품 정보 잘못 입력 시, 폼 제출에 포함되지 않는 요소들 재초기화
-    private void reinitializeForm(ItemForm form, Item item) {
-        form.setName(item.getName());
-        form.setStockQuantity(item.getStockQuantity());
     }
 
 }
