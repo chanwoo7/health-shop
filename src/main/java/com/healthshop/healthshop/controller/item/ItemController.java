@@ -1,7 +1,9 @@
 package com.healthshop.healthshop.controller.item;
 
 import com.healthshop.healthshop.controller.dto.ItemDto;
+import com.healthshop.healthshop.domain.item.Category;
 import com.healthshop.healthshop.domain.item.Item;
+import com.healthshop.healthshop.service.CategoryService;
 import com.healthshop.healthshop.service.ItemService;
 import com.healthshop.healthshop.util.ItemConverter;
 import lombok.RequiredArgsConstructor;
@@ -19,23 +21,30 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CategoryService categoryService;
 
     @GetMapping
     public String shop(@RequestParam(defaultValue = "0") int page,
+                       @RequestParam(required = false) Long category,
                        @RequestParam(defaultValue = "") String keyword,
                        @RequestParam(defaultValue = "idDesc") String sort,
                        Model model) {
         PageRequest pageRequest = PageRequest.of(page, 12);
-        Page<Item> itemsPage = itemService.findItems(keyword, sort, pageRequest);
+        Page<Item> itemsPage = itemService.findItems(category, keyword, sort, pageRequest);
         List<ItemDto> itemDtos = itemsPage.getContent().stream()
                 .map(ItemConverter::toDto)
                 .toList();
+        List<Category> categories = categoryService.findCategories();
 
         model.addAttribute("items", itemDtos);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", itemsPage.getTotalPages());
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("category", category);
         model.addAttribute("keyword", keyword);
         model.addAttribute("sort", sort);
+
         return "shop";
     }
 

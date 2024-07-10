@@ -51,9 +51,13 @@ public class ItemService {
         return itemRepository.findById(id).orElse(null);
     }
 
-    public Page<Item> findItems(String keyword, String sort, PageRequest pageRequest) {
+    public Page<Item> findItems(Long categoryId, String keyword, String sort, PageRequest pageRequest) {
         // 주어진 키워드로 Item의 name 필드 검색하는 조건 생성
         Specification<Item> spec = Specification.where(ItemSpecifications.hasKeyword(keyword));
+
+        if (categoryId != null) {
+            spec = spec.and(ItemSpecifications.hasCategory(categoryId));
+        }
 
         spec = switch (sort) {
             case "priceDesc" -> spec.and(ItemSpecifications.sortByPriceDesc());

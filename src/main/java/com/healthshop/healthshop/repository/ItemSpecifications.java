@@ -5,6 +5,11 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class ItemSpecifications {
 
+    public static Specification<Item> hasCategory(Long categoryId) {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("category").get("id"), categoryId);
+    }
+
     public static Specification<Item> hasKeyword(String keyword) {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.like(root.get("name"), "%" + keyword + "%");
