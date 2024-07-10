@@ -23,7 +23,7 @@
                 <div style="display: flex; align-items: center;">
                     <h1 th:text="${item.name}" class="display-5 fw-bolder text-black me-2">Shop item</h1>
                     <th:block th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                        <a class="btn small-button mt-3 bg-danger" type="button" th:href="@{'/shop/item/manage/' + ${item.id}}">상품 관리 페이지</a>
+                        <a class="btn small-button mt-3 bg-danger" type="button" th:href="@{'/manage/item/' + ${item.id}}">상품 관리 페이지</a>
                     </th:block>
                 </div>
                 <!-- 상품 가격 -->

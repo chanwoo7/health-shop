@@ -20,7 +20,7 @@
                                     &lt; 상품 페이지로 이동
                                 </a>
 
-                                <form th:action="@{/shop/item/manage/{itemId}(itemId = ${itemForm.itemId})}" th:method="delete" onsubmit="return validateDeleteItemForm()">
+                                <form th:action="@{/manage/item/{itemId}(itemId = ${itemForm.itemId})}" th:method="delete" onsubmit="return validateDeleteItemForm()">
                                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="deleteCsrfToken"/>
                                     <button type="submit" class="btn bg-danger btn-block text-white ms-2">
                                         상품 삭제
@@ -29,7 +29,7 @@
 
                             </div>
 
-                            <form role="form" th:action="@{/shop/item/manage/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" th:method="put" enctype="multipart/form-data" onsubmit="return validateUpdateItemForm()">
+                            <form role="form" th:action="@{/manage/item/{itemId}(itemId=${itemForm.itemId})}" th:object="${itemForm}" th:method="put" enctype="multipart/form-data" onsubmit="return validateUpdateItemForm()">
 
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="putCsrfToken"/>
 

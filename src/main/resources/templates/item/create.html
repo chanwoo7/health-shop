@@ -21,7 +21,7 @@
                 </a>
               </div>
 
-              <form role="form" action="/shop/item/manage/create" th:object="${itemForm}" th:method="post" enctype="multipart/form-data" onsubmit="return validateCreateItemForm()">
+              <form role="form" action="/manage/item/create" th:object="${itemForm}" th:method="post" enctype="multipart/form-data" onsubmit="return validateCreateItemForm()">
 
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="csrfToken"/>
 

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/shop/item/manage")
+@RequestMapping("/manage/item")
 @RequiredArgsConstructor
 public class ItemManagementController {
 
