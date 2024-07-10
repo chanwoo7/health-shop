@@ -7,6 +7,7 @@ import com.healthshop.healthshop.service.CategoryService;
 import com.healthshop.healthshop.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +18,9 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/shop/item/manage")
+@RequestMapping("/manage/item")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ItemManagementController {
 
     public final ItemService itemService;
