@@ -817,16 +817,45 @@ textarea {
   text-align: center;
 }
 
-/* Dropdown 버튼의 스타일 변경 */
-.dropdown-toggle {
-  padding: 12px 30px; /* 내부 여백 */
-  min-width: 130px;
+.category-button {
+  background: #6e0000;
+  border: 0;
+  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  padding: 6px 18px; /* 버튼 내부 여백 조정 */
+  margin: 0 5px; /* 버튼과 텍스트 사이의 여백 조정 */
+  vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
+  text-align: center;
 }
 
-/*.dropdown-toggle:hover {*/
-/*  background-color: #646464; !* 호버 시 배경 색상 *!*/
-/*  color: white; !* 호버 시 텍스트 색상 *!*/
-/*}*/
+.category-button:hover {
+  background: #4f0000;
+}
+
+.category-button-unselected {
+  background: #b99393;
+  border: 0;
+  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  padding: 6px 18px; /* 버튼 내부 여백 조정 */
+  margin: 0 5px; /* 버튼과 텍스트 사이의 여백 조정 */
+  vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
+  text-align: center;
+}
+
+.category-button-unselected:hover {
+  background: #6e0000;
+}
+
+/* Dropdown 버튼의 스타일 변경 */
+.dropdown-toggle {
+  background: #252525 !important;
+  padding: 12px 30px; /* 내부 여백 */
+  min-width: 130px;
+  border: 0;
+}
+
+.dropdown-toggle:hover {
+  background-color: black !important; /* 호버 시 배경 색상 */
+}
 
 /* Dropdown 메뉴의 스타일 변경 */
 .dropdown-menu {
@@ -841,13 +870,13 @@ textarea {
 
 /* Dropdown 항목의 스타일 변경 */
 .dropdown-item {
-  color: #343a40; /* 항목 텍스트 색상 */
+  color: #212121; /* 항목 텍스트 색상 */
   padding: 10px 20px; /* 내부 여백 */
 }
 
 .dropdown-item:hover {
   background-color: #e9ecef; /* 호버 시 배경 색상 */
-  color: #212529; /* 호버 시 텍스트 색상 */
+  color: #151515; /* 호버 시 텍스트 색상 */
 }
 
 .form-control-search {
@@ -855,7 +884,13 @@ textarea {
 }
 
 .btn-search {
+  background: #252525 !important;
   min-width: 100px !important;
+  border: 0;
+}
+
+.btn-search:hover {
+  background: black !important;
 }
 
 .bg-danger {

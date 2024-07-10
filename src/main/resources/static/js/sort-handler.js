@@ -1,9 +1,3 @@
-function setSort(value, text) {
-    document.getElementById('sortInput').value = value;
-    document.getElementById('sortDropdownText').innerText = text;
-    document.getElementById('sortForm').submit();
-}
-
 // 페이지 로드할 때마다 선택한 정렬값으로 드롭다운 텍스트 초기화
 document.addEventListener('DOMContentLoaded', function() {
     const sortValue = document.getElementById('sortInput').value;
