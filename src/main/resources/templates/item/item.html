@@ -15,9 +15,8 @@
                 <!-- 상품 카테고리 -->
                 <div class="mb-1">
                     <span>카테고리:</span>
-                    <button class="btn small-button mb-1" type="button" th:text="${item.category}">
-                        <i class="me-1"></i>
-                    </button>
+                    <a class="btn category-button mb-1" type="button" th:text="${item.category}"
+                       th:href="@{/shop(category=${item.category})}">Category</a>
                 </div>
                 <!-- 상품 제목 및 상품 관리 페이지 버튼 -->
                 <div style="display: flex; align-items: center;">
