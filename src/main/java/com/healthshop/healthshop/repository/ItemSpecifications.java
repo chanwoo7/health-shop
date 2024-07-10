@@ -5,9 +5,13 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class ItemSpecifications {
 
-    public static Specification<Item> hasCategory(Long categoryId) {
-        return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("category").get("id"), categoryId);
+    public static Specification<Item> hasCategory(String categoryName) {
+        return (root, query, criteriaBuilder) -> {
+            if (categoryName.isEmpty()) {
+                return criteriaBuilder.conjunction();  // 항상 참인 조건 (모든 항목 반환)
+            }
+            return criteriaBuilder.equal(root.get("category").get("name"), categoryName);
+        };
     }
 
     public static Specification<Item> hasKeyword(String keyword) {

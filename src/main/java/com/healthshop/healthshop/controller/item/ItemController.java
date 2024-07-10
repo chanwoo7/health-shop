@@ -25,7 +25,7 @@ public class ItemController {
 
     @GetMapping
     public String shop(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(required = false) Long category,
+                       @RequestParam(defaultValue = "") String category,
                        @RequestParam(defaultValue = "") String keyword,
                        @RequestParam(defaultValue = "idDesc") String sort,
                        Model model) {

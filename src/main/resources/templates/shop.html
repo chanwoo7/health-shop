@@ -30,16 +30,16 @@
   <div class="container">
 
     <div class="mb-4 ms-5">
-      <div class="mb-1">카테고리 선택:</div>
+      <div class="mb-1">카테고리 선택: <b class="text-black" th:text="${category} == '' ? '전체' : ${category}"></b></div>
       <div>
-        <a class="btn gradient-custom me-2 mb-1"
-           th:classappend="${category} == null ? 'category-button' : 'category-button-unselected'"
-           th:href="@{/shop(category=${null})}">전체</a>
-        <a class="btn gradient-custom me-2 mb-1"
+        <a class="btn me-2 mb-1"
+           th:classappend="${category} == '' ? 'category-button' : 'category-button-unselected'"
+           th:href="@{/shop(category='')}">전체</a>
+        <a class="btn me-2 mb-1"
            th:each="categoryItem : ${categories}"
            th:text="${categoryItem.name}"
-           th:classappend="${category} == ${categoryItem.id} ? 'category-button' : 'category-button-unselected'"
-           th:href="@{/shop(category=${categoryItem.id})}"></a>
+           th:classappend="${category} == ${categoryItem.name} ? 'category-button' : 'category-button-unselected'"
+           th:href="@{/shop(category=${categoryItem.name})}"></a>
       </div>
     </div>
 
