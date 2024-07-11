@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/shop")
@@ -53,7 +54,15 @@ public class ItemController {
         Item item = itemService.findOne(itemId);
         ItemDto itemDto = ItemConverter.toDto(item);
 
+        // 연관 상품: 동일 카테고리 내에서 할인율이 가장 높은 상품 4개
+        // TODO: 추후 동일 카테고리 내에서 인기도(like)가 가장 높은 상품 4개로 변경 고려할 것
+        List<ItemDto> relatedItems = itemService.findTopDiscountedItemsByCategory(item.getCategory().getName(), 4).stream()
+                        .map(ItemConverter::toDto)
+                        .toList();
+
         model.addAttribute("item", itemDto);
+        model.addAttribute("relatedItems", relatedItems);
+
         return "item/item";
     }
 

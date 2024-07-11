@@ -89,6 +89,7 @@ public class ItemService {
         return RELATIVE_PATH_PREFIX + fileName;
     }
 
+    // 카테고리 ID로 상품 카테고리 설정
     @Transactional
     public void setItemCategoryById(Long itemId, Long categoryId) {
         Item item = itemRepository.findById(itemId).orElseThrow(() ->
@@ -98,4 +99,13 @@ public class ItemService {
         item.setCategory(category);
         itemRepository.save(item);
     }
+
+    // 카테고리 내에서 할인율이 가장 높은 상품들 반환
+    public List<Item> findTopDiscountedItemsByCategory(String category, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(0, pageSize);
+        Specification<Item> spec = Specification.where(ItemSpecifications.hasCategory(category))
+                .and(ItemSpecifications.sortByDiscountRateDesc());
+        return itemRepository.findAll(spec, pageRequest).getContent();
+    }
+
 }
