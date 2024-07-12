@@ -38,21 +38,80 @@
 <img src="https://img.shields.io/badge/spring_security-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/spring_boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/Junit5-25A162?style=for-the-badge&logo=Junit5&logoColor=white"><nobr>
+
+- **Spring**
+    - 전체적인 애플리케이션 프레임워크로 사용되었습니다.
+    - 스프링 빈을 포함한 스프링이 제공하는 여러 기능을 활용하여 애플리케이션의 구성 요소를 관리하고 의존성 주입(DI)을 처리하였습니다.
+
+- **Spring Data JPA**
+    - 데이터베이스와의 상호작용을 단순화하기 위해 사용된 ORM입니다.
+    - JPA를 기반으로 복잡한 SQL 쿼리를 작성할 필요 없이 데이터베이스 작업을 처리할 수 있도록 했습니다.
+  
+- **Spring Security**
+    - 비밀번호 암호화와 사용자 인증 및 권한 부여를 관리하고, 보안 설정을 관리하기 위해 사용되었습니다.
+  
+- **Spring Boot**
+    - 초기 설정을 최소화하여 빠르고 간편하게 애플리케이션을 개발하기 위해 사용되었습니다.
+    - 또한 내장 서버인 Tomcat을 사용하기 위해 사용되었습니다. 
+  
+- **JUnit5**
+    - 백엔드 코드(주로 Service 계층과 Repository 계층의 코드)에 대한 단위 테스트와 통합 테스트를 위해 사용되었습니다.
+<br>
+
 ### Frontend
 <img src="https://img.shields.io/badge/Thymeleaf-%23005C0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/bootstrap5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><nobr>
+
+- **Thymeleaf**
+    - 서버 사이드 렌더링(SSR)을 위한 템플릿 엔진으로 사용되었습니다.
+    - Thymeleaf를 통해 HTML을 동적으로 생성하고, Spring MVC와 통합하여 뷰를 렌더링하는 방식으로 사용했습니다.
+  
+- **HTML5**
+    - 웹 페이지의 구조를 정의하는 데 사용되었습니다.
+ 
+- **CSS3**
+    - 웹 페이지의 스타일링(레이아웃, 색상, 폰트)을 위해 사용되었습니다.
+  
+- **Bootstrap5**
+    - BootStrap에서 제공하는 여러 UI 컴포넌트와 그리드 시스템이 사용되었고, 반응형 웹 디자인을 위해 사용되었습니다.
+  
+- **JavaScript**
+    - Alert 창, 할인율에 따른 실시간 가격 변동 등 여러 동적 기능을 추가하기 위해 사용되었습니다.
+    - 필요한 곳에 이벤트 리스너를 정의하여 처리함으로써 클라이언트 측 로직을 구현하였습니다.
+<br>
+
 ### Database
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/h2_DB-0302EC?style=for-the-badge&logo=h2&logoColor=white"><nobr>
+
+- **MySQL**
+    - 프로덕션 환경에서의 데이터 저장소로 사용되었습니다.
+  
+- **H2 DB**
+    - 개발 및 테스트 환경에서의 임시 데이터 저장소로 사용되었습니다.
+<br>
+
 ### Tools
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/mysql_workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><nobr>
-<br>
+
+- **GitHub**
+    - 소스 코드 버전 관리를 위해 사용되었습니다.
+  
+- **IntelliJ IDEA**
+    - 주요 개발 환경(IDE)으로 사용되었습니다.
+    - 백엔드 및 프론트엔드 코드를 수정하고, 개발 과정에서 Tomcat 서버를 실행하기 위해 사용했습니다.
+  
+- **Postman**
+    - RESTful API를 테스트하고 디버깅하고 위해 사용했습니다.
+  
+- **MySQL WorkBench**
+    - MySQL 데이터베이스를 관리하고 데이터베이스 상태를 시각적으로 모니터링하기 위해 사용했습니다.
 <br>
 
 ## 4. 참고 자료
