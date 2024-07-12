@@ -9,15 +9,20 @@
 <!-- Product section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
+
+        <div class="d-flex align-items-center mb-4">
+            <img src="/images/left-arrow.svg" href="/shop" class="me-2" width="23" height="23" alt="cart" style="margin-top: 2px;">
+            <a href="/shop" class="fw-bolder fs-6">Shop 페이지로 돌아가기</a>
+        </div>
+
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="${item.imgPath}" alt="..." /></div>
             <div class="col-md-6">
                 <!-- 상품 카테고리 -->
                 <div class="mb-1">
                     <span>카테고리:</span>
-                    <button class="btn small-button mb-1" type="button" th:text="${item.category}">
-                        <i class="me-1"></i>
-                    </button>
+                    <a class="btn category-button mb-1" type="button" th:text="${item.category}"
+                       th:href="@{/shop(category=${item.category})}">Category</a>
                 </div>
                 <!-- 상품 제목 및 상품 관리 페이지 버튼 -->
                 <div style="display: flex; align-items: center;">
@@ -45,7 +50,7 @@
                 </div>
                 <hr>
                 <!-- 상품 설명 -->
-                <p th:utext="${#strings.replace(item.description, '\n', '&#60;br&#62;')}" class="lead fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                <p th:utext="${#strings.replace(item.description, '\n', '&#60;br&#62;')}" class="lead fs-6">Item Description</p>
 
                 <!-- 수정 및 삭제 버튼 -->
                 <div class="d-flex">
@@ -62,112 +67,36 @@
     </div>
 </section>
 
-<!-- Related items section-->
-<section class="py-5 bg-light">
+<!-- Related products -->
+<section class="untree_co-section product-section py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Related products</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Fancy Product</h5>
-                            <!-- Product price-->
-                            $40.00 - $80.00
+
+            <div th:each="relatedItem: ${relatedItems}" class="col-12 col-md-4 col-lg-3 mb-5">
+                <a class="product-item" th:href="@{/shop/item/{id}(id=*{relatedItem.id})}">
+                    <img th:src="@{${relatedItem.imgPath}}" class="img-fluid product-thumbnail">
+                    <h5 class="product-title bold-text" th:text="${relatedItem.name}"></h5>
+                    <th:block th:if="${relatedItem.discountRate} != 0">
+                        <div>
+                            <span class="bold-text" th:text="${relatedItem.discountRate} + '%'"></span>
+                            <del><span class="mb-0 original-price" th:text="${#numbers.formatInteger(relatedItem.price, 3, 'COMMA')} + '원'"></span></del>
                         </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                    </div>
-                </div>
+                        <strong class="product-price fs-1"
+                                th:text="${#numbers.formatInteger(relatedItem.price - (relatedItem.discountRate * relatedItem.price * 0.01), 3, 'COMMA')} + '원'">
+                        </strong>
+                    </th:block>
+                    <th:block th:if="${relatedItem.discountRate} == 0">
+                        <strong class="product-price fs-1" th:text="${#numbers.formatInteger(relatedItem.price, 3, 'COMMA')} + '원'"></strong>
+                    </th:block>
+                </a>
             </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Special Item</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$20.00</span>
-                            $18.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Sale Item</h5>
-                            <!-- Product price-->
-                            <span class="text-muted text-decoration-line-through">$50.00</span>
-                            $25.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
+
+
 <!-- Footer-->
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 <!-- Bootstrap core JS-->

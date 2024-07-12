@@ -30,16 +30,16 @@
   <div class="container">
 
     <div class="mb-4 ms-5">
-      <div class="mb-1">카테고리 선택:</div>
+      <div class="mb-2 fs-6">카테고리 선택: <b class="text-black" th:text="${category} == '' ? '전체' : ${category}"></b></div>
       <div>
-        <a class="btn gradient-custom me-2 mb-1"
-           th:classappend="${category} == null ? 'category-button' : 'category-button-unselected'"
-           th:href="@{/shop(category=${null})}">전체</a>
-        <a class="btn gradient-custom me-2 mb-1"
+        <a class="btn me-2 mb-1"
+           th:classappend="${category} == '' ? 'category-button' : 'category-button-unselected'"
+           th:href="@{/shop(category='')}">전체</a>
+        <a class="btn me-2 mb-1"
            th:each="categoryItem : ${categories}"
            th:text="${categoryItem.name}"
-           th:classappend="${category} == ${categoryItem.id} ? 'category-button' : 'category-button-unselected'"
-           th:href="@{/shop(category=${categoryItem.id})}"></a>
+           th:classappend="${category} == ${categoryItem.name} ? 'category-button' : 'category-button-unselected'"
+           th:href="@{/shop(category=${categoryItem.name})}"></a>
       </div>
     </div>
 
@@ -91,7 +91,7 @@
       <div th:each="item : ${items}" class="col-12 col-md-4 col-lg-3 mb-5">
         <a class="product-item" th:href="@{/shop/item/{id}(id=*{item.id})}">
           <img th:src="@{${item.imgPath}}" class="img-fluid product-thumbnail">
-          <h3 class="product-title bold-text" th:text="${item.name}"></h3>
+          <h5 class="product-title bold-text" th:text="${item.name}"></h5>
           <th:block th:if="${item.discountRate} != 0">
             <div>
               <span class="bold-text" th:text="${item.discountRate} + '%'"></span>
@@ -105,9 +105,9 @@
             <strong class="product-price fs-1" th:text="${#numbers.formatInteger(item.price, 3, 'COMMA')} + '원'"></strong>
           </th:block>
 
-          <span class="icon-cross">
-            <img src="/images/cross.svg" class="img-fluid">
-          </span>
+<!--          <span class="icon-cross">-->
+<!--            <img src="/images/cross.svg" class="img-fluid">-->
+<!--          </span>-->
         </a>
       </div>
 

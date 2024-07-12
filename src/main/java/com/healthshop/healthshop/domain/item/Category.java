@@ -15,7 +15,7 @@ public class Category {
     @Column(name = "category_id")
     private Long id;
 
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category")

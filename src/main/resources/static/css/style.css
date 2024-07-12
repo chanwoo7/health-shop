@@ -820,7 +820,7 @@ textarea {
 .category-button {
   background: #6e0000;
   border: 0;
-  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  /*font-size: 14px; !* 버튼 텍스트 크기 조정 *!*/
   padding: 6px 18px; /* 버튼 내부 여백 조정 */
   margin: 0 5px; /* 버튼과 텍스트 사이의 여백 조정 */
   vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
@@ -832,9 +832,9 @@ textarea {
 }
 
 .category-button-unselected {
-  background: #b99393;
+  background: #d7acac;
   border: 0;
-  font-size: 14px; /* 버튼 텍스트 크기 조정 */
+  /*font-size: 14px; !* 버튼 텍스트 크기 조정 *!*/
   padding: 6px 18px; /* 버튼 내부 여백 조정 */
   margin: 0 5px; /* 버튼과 텍스트 사이의 여백 조정 */
   vertical-align: middle; /* 버튼을 텍스트 중앙에 맞춤 */
@@ -921,4 +921,9 @@ textarea {
 
 .profile-image {
   filter: drop-shadow(0 0 20px black);
+}
+
+/* 링크 밑줄 제거 */
+a {
+  text-decoration-line: none;
 }
