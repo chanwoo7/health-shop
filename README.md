@@ -14,7 +14,8 @@
     - [개발 기간](#-개발-기간)
     - [커밋 컨벤션](#-커밋-컨벤션)
 3. [프로젝트 구조](#3-프로젝트-구조)
-    - [ERD](#erd)
+    - [아키텍처 구성](#-아키텍처-구성)
+    - [ERD](#-erd)
 4. [사용된 기술 스택](#4-사용된-기술-스택)
 5. [참고 자료](#5-참고-자료)
 
@@ -29,7 +30,7 @@
 
 이렇게 학습한 내용을 기반으로 실질적인 웹사이트를 스스로 구축함으로써, 백엔드-프론트엔드에 걸친 웹사이트의 전반적인 동작 방식을 이해하고, 웹사이트 구축에 필요한 여러 고려사항들을 직접 습득하고 싶었습니다.<br>
 
-이 때문에, 향후 현업 및 실무 프로젝트에서 폭넓은 분야에서 기여하는 것을 목표로 아키텍처 설계, 데이터베이스 설계, 백엔드 API 개발, 프론트엔드 개발(단, 수정 가능한 일부 [무료 템플릿](#4-참고-자료)을 참고함), 보안 설계 등의 전 과정을 스스로 담당하여 프로젝트를 진행했습니다.
+이 때문에, 향후 현업 및 실무 프로젝트에서 폭넓은 분야에서 기여할 수 있게 되는 것을 목표로 아키텍처 설계, 데이터베이스 설계, 백엔드 API 개발, 프론트엔드 개발(단, 수정 가능한 일부 [무료 템플릿](#5-참고-자료)을 참고함), 보안 설계 등의 전 과정을 스스로 담당하여 프로젝트를 진행했습니다.
 <br>
 <br>
 
@@ -49,11 +50,49 @@
 <br>
 
 ## 3. 프로젝트 구조
-### ERD
+### 📍 아키텍처 구성
+'**MVC 패턴**'과 '**레이어드 아키텍처 패턴**'을 통합하여 본 프로젝트에 적용했습니다.
+<br>
+
+#### ⭐️ MVC 패턴 (Model - View - Controller Pattern)
+- **Model (도메인)**
+  - 순수 비즈니스 로직과 데이터 처리를 담당합니다.
+  - `domain` 패키지에 위치하며, MySQL 데이터베이스 테이블에 매핑되는 엔티티 클래스들을 포함합니다.
+- **View**
+  - 사용자 인터페이스를 담당합니다.
+  - `resources/templates` 디렉토리에 위치하며, Thymeleaf 템플릿 파일들을 포함합니다.
+- **Controller**
+  - 사용자 요청을 처리하고 적절한 뷰를 반환합니다.
+  - `controller` 패키지에 위치하며, RESTful API 엔드포인트가 정의되어 있어 RESTful API 요청을 처리할 수 있는 컨트롤러 클래스들을 포함합니다.
+<br>
+
+#### ⭐️ 레이어드 아키텍처 패턴 (Layered Architecture Pattern)
+애플리케이션을 `domain`, `repository`, `service`, `controller`로 계층화하여, 각 계층이 명확한 역할을 가질 수 있도록 함으로써 유지보수와 확장에 용이하도록 구성했습니다.<br>
+각 계층에 대한 설명은 다음과 같습니다.<br>
+
+- **도메인 계층 (Domain Layer)**
+  - 순수 비즈니스 로직 및 엔티티 클래스를 포함합니다.
+  - MVC 패턴의 'Model'에 해당합니다.
+  - `domain` 패키지에 위치해 있습니다.
+- **리포지토리 계층 (Repository Layer)**
+  - 데이터 접근(조회 및 저장 등) 로직을 담당합니다.
+  - 전반적으로 `JpaRepository`를 상속한 인터페이스 형태로 구현했습니다.
+  - `repository` 패키지에 위치해 있습니다.
+- **서비스 계층 (Service Layer)**
+  - 비즈니스 로직 및 트랜잭션을 처리하고, 도메인 객체와 리포지토리 계층을 사용하여 데이터를 조회하거나 변경합니다.
+  - `service` 패키지에 위치해 있습니다.
+- **컨트롤러 계층 (Controller Layer)**
+  - 사용자 요청을 처리하고, 서비스 계층을 호출하여 응답을 생성합니다.
+  - MVC 패턴의 'Controller'에 해당합니다.
+  - `controller` 패키지에 위치해 있습니다.
+<br>
+
+### 📍 ERD
 <img width="1562" alt="image" src="https://github.com/chanwoo7/health-shop/assets/95745646/dc6b5a85-2759-4c76-8596-b30c198e951f">
+<br>
 
 ## 4. 사용된 기술 스택
-### Backend
+### 📍 Backend
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/spring_data_jpa-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/spring_security-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
@@ -79,7 +118,7 @@
 - 백엔드 코드(주로 Service 계층과 Repository 계층의 코드)에 대한 단위 테스트와 통합 테스트를 위해 사용했습니다.
 <br>
 
-### Frontend
+### 📍 Frontend
 <img src="https://img.shields.io/badge/Thymeleaf-%23005C0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"><nobr>
@@ -104,7 +143,7 @@
 - 필요한 곳에 이벤트 리스너를 정의하여 처리함으로써 클라이언트 측 로직을 구현했습니다.
 <br>
 
-### Database
+### 📍 Database
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/h2_DB-0302EC?style=for-the-badge&logo=h2&logoColor=white"><nobr>
 
@@ -115,7 +154,7 @@
 - 개발 및 테스트 환경에서의 임시 데이터 저장소로 사용했습니다.
 <br>
 
-### Tools
+### 📍 Tools
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"><nobr>
@@ -140,4 +179,4 @@
     - https://themewagon.com/themes/furni-online-store/ (CC BY 3.0 License)
     - https://startbootstrap.com/template/shop-item (MIT License)
 
-- 또한 이미지 관련 저작권 문제를 피하기 위해, 본 프로젝트에 포함된 모든 이미지(상품 이미지 포함)는 ChatGPT의 image generator를 통해 생성하여 사용했습니다.
+- 또한 이미지 관련 저작권 문제를 피하기 위해, 본 프로젝트에 포함된 모든 .webp 이미지(상품 이미지 포함), 로고, 파비콘은 **ChatGPT의 image generator**를 통해 생성하여 사용했고, 나머지 이미지는 CC0 License의 이미지를 사용했습니다.
