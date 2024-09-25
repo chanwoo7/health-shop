@@ -68,7 +68,7 @@
   - `resources/templates` 디렉토리에 위치하며, Thymeleaf 템플릿 파일들을 포함합니다.
 - **Controller**
   - 사용자 요청을 처리하고 적절한 뷰를 반환합니다.
-  - `controller` 패키지에 위치하며, RESTful API 엔드포인트가 정의되어 있어 RESTful API 요청을 처리할 수 있는 컨트롤러 클래스들을 포함합니다.
+  - `controller` 패키지에 위치하며, 뷰 컨트롤러가 정의되어 있어 해당 요청을 처리할 수 있는 컨트롤러 클래스들을 포함합니다.
 <br>
 
 #### ⭐️ 레이어드 아키텍처 패턴 (Layered Architecture Pattern)
@@ -163,7 +163,6 @@
 ### 📍 Tools
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white"><nobr>
-<img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/mysql_workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><nobr>
 
 #### **GitHub**
@@ -172,9 +171,6 @@
 #### **IntelliJ IDEA**
 - 주요 개발 환경(IDE)으로 사용되었습니다.
 - 백엔드 및 프론트엔드 코드를 수정하고, 개발 과정에서 Tomcat 서버를 실행하기 위해 사용했습니다.
-  
-#### **Postman**
-- RESTful API를 테스트하고 디버깅하고 위해 사용했습니다.
   
 #### **MySQL WorkBench**
 - MySQL 데이터베이스를 관리하고 데이터베이스 상태를 시각적으로 모니터링하기 위해 사용했습니다.
