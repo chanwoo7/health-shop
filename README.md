@@ -98,7 +98,6 @@
 <br>
 
 ## 4. 주요 기능
-
 - 회원가입
 <img width="1391" alt="image" src="https://github.com/user-attachments/assets/b5be15c1-7c83-423d-9da3-df48488a9b48">
 <br>
@@ -121,7 +120,7 @@
 <br>
 <br>
 
-- 상품 정보 수정 및 삭제
+- 상품 정보 수정 및 삭제 (관리자용)
 <img width="1110" alt="image" src="https://github.com/user-attachments/assets/de1af402-05d8-4805-a7ee-fbbd69310ad4">
 <br>
 <br>
