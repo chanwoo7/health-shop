@@ -16,8 +16,9 @@
 3. [프로젝트 구조](#3-프로젝트-구조)
     - [아키텍처 구성](#-아키텍처-구성)
     - [ERD](#-erd)
-4. [사용된 기술 스택](#4-사용된-기술-스택)
-5. [참고 자료](#5-참고-자료)
+4. [주요 기능](#4-주요-기능)
+5. [사용된 기술 스택](#5-사용된-기술-스택)
+6. [참고 자료](#6-참고-자료)
 
 <hr>
 <br>
@@ -96,7 +97,38 @@
 <img width="1562" alt="image" src="https://github.com/chanwoo7/health-shop/assets/95745646/dc6b5a85-2759-4c76-8596-b30c198e951f">
 <br>
 
-## 4. 사용된 기술 스택
+## 4. 주요 기능
+
+- 회원가입
+<img width="1391" alt="image" src="https://github.com/user-attachments/assets/b5be15c1-7c83-423d-9da3-df48488a9b48">
+<br>
+<br>
+
+- 로그인
+<img width="1516" alt="image" src="https://github.com/user-attachments/assets/2f4cab31-fe40-4ffb-a7d5-faa67ba03ab6">
+<br>
+<br>
+
+- 상품 목록 조회
+  - 카테고리, 정렬, 검색어 기반 검색 가능
+<img width="992" alt="image" src="https://github.com/user-attachments/assets/8081bf00-9c57-4e9a-ba10-b132e4991f55">
+<br>
+<br>
+
+- 상품 상세 조회
+  - 상품 상세 정보 및 연관된 상품 조회 가능
+<img width="1228" alt="image" src="https://github.com/user-attachments/assets/45b87b95-3b4f-4ab8-96b3-de57510249de">
+<br>
+<br>
+
+- 상품 정보 수정 및 삭제
+<img width="1110" alt="image" src="https://github.com/user-attachments/assets/de1af402-05d8-4805-a7ee-fbbd69310ad4">
+<br>
+<br>
+
+
+
+## 5. 사용된 기술 스택
 ### 📍 Backend
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
 <img src="https://img.shields.io/badge/spring_data_jpa-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><nobr>
@@ -176,7 +208,7 @@
 - MySQL 데이터베이스를 관리하고 데이터베이스 상태를 시각적으로 모니터링하기 위해 사용했습니다.
 <br>
 
-## 5. 참고 자료
+## 6. 참고 자료
 - 프론트엔드 개발 시작 단계에서, 무료로 변경 가능한 아래의 템플릿을 참고하여 변경했습니다.
     - https://themewagon.com/themes/furni-online-store/ (CC BY 3.0 License)
     - https://startbootstrap.com/template/shop-item (MIT License)
